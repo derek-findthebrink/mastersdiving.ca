@@ -23,15 +23,15 @@ export const headerData = {
     //     },
     //   ],
     // },
-    {
-      text: 'Pages',
-      links: [
-        {
-          text: 'Campaigns',
-          href: getPermalink('/campaigns'),
-        },
-      ],
-    },
+    // {
+    //   text: 'Pages',
+    //   links: [
+    //     {
+    //       text: 'Campaigns',
+    //       href: getPermalink('/campaigns'),
+    //     },
+    //   ],
+    // },
     // {
     //   text: 'Blog',
     //   links: [
