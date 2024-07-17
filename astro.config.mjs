@@ -17,7 +17,7 @@ import {
   responsiveTablesRehypePlugin,
   lazyImagesRehypePlugin,
 } from './src/utils/frontmatter.mjs';
-
+import react from '@astrojs/react';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const hasExternalScripts = true;
@@ -49,13 +49,13 @@ export default defineConfig({
         ],
       },
     }),
-
     ...whenExternalScripts(() =>
       partytown({
-        config: { forward: ['dataLayer.push'] },
+        config: {
+          forward: ['dataLayer.push'],
+        },
       })
     ),
-
     compress({
       CSS: true,
       HTML: {
@@ -72,6 +72,7 @@ export default defineConfig({
     astrowind({
       config: './src/config.yaml',
     }),
+    react(),
   ],
 
   image: {

@@ -16,7 +16,7 @@ metadata:
     index: true
     follow: true
   openGraph:
-    site_name: Masters Diving canada
+    site_name: Masters Diving Canada
     images:
       - url: "~/assets/images/default.png"
         width: 1200
