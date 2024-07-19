@@ -2,7 +2,7 @@ export default {
   title: 'iDive Learn to Dive & Masters Program Cancellation',
   description:
     "Your responses will be used to generate email templates that you can then proof-read and send to folks who can help us restore the schedule for iDive's Learn to Dive and Master's programs",
-  sendResultOnPageNext: true,
+  sendResultOnPageNext: false,
   pages: [
     {
       name: 'page1',
