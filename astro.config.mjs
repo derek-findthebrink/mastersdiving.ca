@@ -18,6 +18,7 @@ import {
   lazyImagesRehypePlugin,
 } from './src/utils/frontmatter.mjs';
 import react from '@astrojs/react';
+import rehypeExternalLinks from 'rehype-external-links';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const hasExternalScripts = true;
@@ -82,7 +83,7 @@ export default defineConfig({
 
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],
-    rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin],
+    rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin, [rehypeExternalLinks, { target: '_blank' }]],
   },
 
   vite: {
