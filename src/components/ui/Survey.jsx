@@ -5,6 +5,7 @@ import 'survey-core/modern.min.css';
 import surveyStructure from './idive-program-cancellation-survey.js';
 
 const API_URL = 'http://localhost:8000/api';
+const IS_ENABLED = false;
 
 class SurveyAPI {
   async anon() {
@@ -31,7 +32,7 @@ class SurveyAPI {
 
 const EmptyMessage = () => <p>This is still under development. Check back soon!</p>;
 
-export default function Survey({ isEnabled = false }) {
+export default function Survey({ isEnabled = IS_ENABLED }) {
   const [surveyInstance, setSurveyInstance] = useState(null);
   const api = new SurveyAPI();
   const SURVEY_KEY = 'survey__idive-cancellation__responses';
