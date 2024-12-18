@@ -6,6 +6,19 @@ export const headerData = {
       text: 'Blog',
       href: getBlogPermalink(),
     },
+    {
+      text: 'Clubs',
+      href: getPermalink('/clubs'),
+    },
+    {
+      text: 'Resources',
+      links: [
+        {
+          text: 'Degree of Difficulty Explorer',
+          href: getPermalink('/resources/diving-degree-of-difficulty-explorer'),
+        },
+      ],
+    },
     // {
     //   text: 'Homes',
     //   links: [
