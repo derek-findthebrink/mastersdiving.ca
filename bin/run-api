@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-cd mastersdiving_api || exit
-
-poetry run python ./manage.py runserver
-
