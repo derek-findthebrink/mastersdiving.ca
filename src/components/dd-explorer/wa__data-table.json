@@ -3081,7 +3081,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 1,
       "Dive Number": 101,
       "Dive Description": "Forward Dive",
@@ -3092,7 +3092,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 1,
       "Dive Number": 102,
       "Dive Description": "Forward 1 Somersault",
@@ -3103,7 +3103,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 1,
       "Dive Number": 103,
       "Dive Description": "Forward 1 \u00bd Somersaults",
@@ -3114,7 +3114,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 1,
       "Dive Number": 104,
       "Dive Description": "Forward 2 Somersaults",
@@ -3125,7 +3125,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 1,
       "Dive Number": 105,
       "Dive Description": "Forward 2\u00bd Somersaults",
@@ -3136,7 +3136,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 1,
       "Dive Number": 106,
       "Dive Description": "Forward 3 Somersaults",
@@ -3147,7 +3147,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 1,
       "Dive Number": 107,
       "Dive Description": "Forward 3\u00bd Somersaults",
@@ -3158,7 +3158,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 1,
       "Dive Number": 108,
       "Dive Description": "Forward 4 Somersaults",
@@ -3169,7 +3169,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 1,
       "Dive Number": 109,
       "Dive Description": "Forward 4\u00bd Somersaults",
@@ -3180,7 +3180,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 1,
       "Dive Number": 112,
       "Dive Description": "Forward Flying   Somersaults",
@@ -3191,7 +3191,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 1,
       "Dive Number": 113,
       "Dive Description": "Forward Flying  1\u00bd Somersaults",
@@ -3202,7 +3202,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 1,
       "Dive Number": 114,
       "Dive Description": "Forward Flying  2 Somersaults",
@@ -3213,7 +3213,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 1,
       "Dive Number": 115,
       "Dive Description": "Forward Flying  2\u00bd Somersaults",
@@ -3224,7 +3224,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 1,
       "Dive Number": 1011,
       "Dive Description": "Forward 5\u00bd Somersaults",
@@ -3235,7 +3235,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 2,
       "Dive Number": 201,
       "Dive Description": "Back Dive",
@@ -3246,7 +3246,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 2,
       "Dive Number": 202,
       "Dive Description": "Back 1 Somersault",
@@ -3257,7 +3257,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 2,
       "Dive Number": 203,
       "Dive Description": "Back 1\u00bd Somersaults",
@@ -3268,7 +3268,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 2,
       "Dive Number": 204,
       "Dive Description": "Back 2 Soms Somersaults",
@@ -3279,7 +3279,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 2,
       "Dive Number": 205,
       "Dive Description": "Back 2\u00bd Somersaults",
@@ -3290,7 +3290,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 2,
       "Dive Number": 206,
       "Dive Description": "Back 3 Somersaults",
@@ -3301,7 +3301,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 2,
       "Dive Number": 207,
       "Dive Description": "Back 3\u00bd Somersaults",
@@ -3312,7 +3312,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 2,
       "Dive Number": 208,
       "Dive Description": "Back 4 Somersaults",
@@ -3323,7 +3323,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 2,
       "Dive Number": 209,
       "Dive Description": "Back 4\u00bd Somersaults",
@@ -3334,7 +3334,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 2,
       "Dive Number": 212,
       "Dive Description": "Back Flying Somersaults",
@@ -3345,7 +3345,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 2,
       "Dive Number": 213,
       "Dive Description": "Back Flying  1\u00bd Somersaults",
@@ -3356,7 +3356,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 2,
       "Dive Number": 215,
       "Dive Description": "Back Flying  2 \u00bd Somersaults",
@@ -3367,7 +3367,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 3,
       "Dive Number": 301,
       "Dive Description": "Reverse Dive",
@@ -3378,7 +3378,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 3,
       "Dive Number": 302,
       "Dive Description": "Reverse 1 Somersault",
@@ -3389,7 +3389,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 3,
       "Dive Number": 303,
       "Dive Description": "Reverse 1\u00bd Somersaults",
@@ -3400,7 +3400,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 3,
       "Dive Number": 304,
       "Dive Description": "Reverse 2 Somersaults",
@@ -3411,7 +3411,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 3,
       "Dive Number": 305,
       "Dive Description": "Reverse 2\u00bd Somersaults",
@@ -3422,7 +3422,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 3,
       "Dive Number": 306,
       "Dive Description": "Reverse 3 Somersaults",
@@ -3433,7 +3433,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 3,
       "Dive Number": 307,
       "Dive Description": "Reverse 3\u00bd Somersaults",
@@ -3444,7 +3444,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 3,
       "Dive Number": 308,
       "Dive Description": "Reverse 4 Somersaults",
@@ -3455,7 +3455,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 3,
       "Dive Number": 309,
       "Dive Description": "Reverse 4\u00bd Somersaults",
@@ -3466,7 +3466,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 3,
       "Dive Number": 312,
       "Dive Description": "Reverse Flying Somersaults",
@@ -3477,7 +3477,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 3,
       "Dive Number": 313,
       "Dive Description": "Reverse  Flying 1\u00bd  Somer-saults",
@@ -3488,7 +3488,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 4,
       "Dive Number": 401,
       "Dive Description": "Inward Dive",
@@ -3499,7 +3499,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 4,
       "Dive Number": 402,
       "Dive Description": "Inward 1 Somersault",
@@ -3510,7 +3510,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 4,
       "Dive Number": 403,
       "Dive Description": "Inward 1\u00bd Somersault",
@@ -3521,7 +3521,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 4,
       "Dive Number": 404,
       "Dive Description": "Inward 2 Somersaults",
@@ -3532,7 +3532,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 4,
       "Dive Number": 405,
       "Dive Description": "Inward 2\u00bd Somersaults",
@@ -3543,7 +3543,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 4,
       "Dive Number": 406,
       "Dive Description": "Inward 3 Somersaults",
@@ -3554,7 +3554,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 4,
       "Dive Number": 407,
       "Dive Description": "Inward 3\u00bd Somersaults",
@@ -3565,7 +3565,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 4,
       "Dive Number": 408,
       "Dive Description": "Inward 4 Somersaults",
@@ -3576,7 +3576,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 4,
       "Dive Number": 409,
       "Dive Description": "Inward 4\u00bd Somersaults",
@@ -3587,7 +3587,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 4,
       "Dive Number": 412,
       "Dive Description": "Inward Flying Somersaults",
@@ -3598,7 +3598,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 4,
       "Dive Number": 413,
       "Dive Description": "Inward Flying 1\u00bd Somersaults",
@@ -3609,7 +3609,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5111,
       "Dive Description": "Fwd Dive \u00bd Twist",
@@ -3620,7 +3620,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5112,
       "Dive Description": "Fwd Dive 1 Twist",
@@ -3631,7 +3631,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5121,
       "Dive Description": "Fwd Somersault \u00bd Twist",
@@ -3642,7 +3642,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5122,
       "Dive Description": "Fwd Somersault 1 Twist",
@@ -3653,7 +3653,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5124,
       "Dive Description": "Fwd Somersault 2 Twists",
@@ -3664,7 +3664,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5131,
       "Dive Description": "Fwd 1\u00bd Somersaults \u00bd Twist",
@@ -3675,7 +3675,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5132,
       "Dive Description": "Fwd 1\u00bd Somersaults 1 Twist",
@@ -3686,7 +3686,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5134,
       "Dive Description": "Fwd 1\u00bd Somersaults 2 Twists",
@@ -3697,7 +3697,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5136,
       "Dive Description": "Fwd 1\u00bd Somersaults 3 Twists",
@@ -3708,7 +3708,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5138,
       "Dive Description": "Fwd 1\u00bd Somersaults 4 Twists",
@@ -3719,7 +3719,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5152,
       "Dive Description": "Fwd 2\u00bd Somersaults 1 Twist",
@@ -3730,7 +3730,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5154,
       "Dive Description": "Fwd 2\u00bd Somersaults 2 Twists",
@@ -3741,7 +3741,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5156,
       "Dive Description": "Fwd 2\u00bd Somersaults 3 Twists",
@@ -3752,7 +3752,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5172,
       "Dive Description": "Fwd 3\u00bd Somersaults 1 Twist",
@@ -3763,7 +3763,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5211,
       "Dive Description": "Back Dive \u00bd Twist",
@@ -3774,7 +3774,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5212,
       "Dive Description": "Back Dive 1 Twist",
@@ -3785,7 +3785,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5221,
       "Dive Description": "Back Somersault \u00bd Twist",
@@ -3796,7 +3796,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5222,
       "Dive Description": "Back Somersault 1 Twist",
@@ -3807,7 +3807,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5223,
       "Dive Description": "Back Somersault 1\u00bd Twists",
@@ -3818,7 +3818,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5225,
       "Dive Description": "Back Somersault 2\u00bd Twists",
@@ -3829,7 +3829,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5231,
       "Dive Description": "Back 1\u00bd Somersaults \u00bd Twist",
@@ -3840,7 +3840,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5233,
       "Dive Description": "Back 1\u00bd Somersaults 1\u00bd Twists",
@@ -3851,7 +3851,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5235,
       "Dive Description": "Back 1\u00bd Somersaults 2\u00bd Twists",
@@ -3862,7 +3862,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5237,
       "Dive Description": "Back 1\u00bd Somersaults 3\u00bd Twists",
@@ -3873,7 +3873,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5239,
       "Dive Description": "Back 1\u00bd Somersaults 4\u00bd Twists",
@@ -3884,7 +3884,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5251,
       "Dive Description": "Back 2\u00bd Somersaults \u00bd Twist",
@@ -3895,7 +3895,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5253,
       "Dive Description": "Back 2\u00bd Somersaults 1\u00bd Twists",
@@ -3906,7 +3906,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5255,
       "Dive Description": "Back 2\u00bd Somersaults 2\u00bd Twists",
@@ -3917,7 +3917,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5257,
       "Dive Description": "Back 2\u00bd Somersaults 3\u00bd Twists",
@@ -3928,7 +3928,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5271,
       "Dive Description": "Back 3\u00bd Somersaults \u00bd Twist",
@@ -3939,7 +3939,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5273,
       "Dive Description": "Back 3\u00bd Somersaults 1\u00bd Twist",
@@ -3950,7 +3950,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5275,
       "Dive Description": "Back 3\u00bd Somersaults 2\u00bd Twist",
@@ -3961,7 +3961,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5311,
       "Dive Description": "Reverse Dive \u00bd Twist",
@@ -3972,7 +3972,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5312,
       "Dive Description": "Reverse Dive 1 Twist",
@@ -3983,7 +3983,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5321,
       "Dive Description": "Reverse Somersault \u00bd Twist",
@@ -3994,7 +3994,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5322,
       "Dive Description": "Reverse Somersault 1 Twist",
@@ -4005,7 +4005,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5323,
       "Dive Description": "Reverse Somersault 1\u00bd Twists",
@@ -4016,7 +4016,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5325,
       "Dive Description": "Reverse Somersault 2\u00bd Twists",
@@ -4027,7 +4027,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5331,
       "Dive Description": "Reverse 1\u00bd Soms. \u00bd Twists",
@@ -4038,7 +4038,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5333,
       "Dive Description": "Reverse 1\u00bd Soms. 1\u00bd Twists",
@@ -4049,7 +4049,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5335,
       "Dive Description": "Reverse 1\u00bd Soms. 2\u00bd Twists",
@@ -4060,7 +4060,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5337,
       "Dive Description": "Reverse 1\u00bd Soms. 3\u00bd Twists",
@@ -4071,7 +4071,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5339,
       "Dive Description": "Reverse 1\u00bd Soms. 4\u00bd Twists",
@@ -4082,7 +4082,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5351,
       "Dive Description": "Reverse 2\u00bd Soms. \u00bd Twists",
@@ -4093,7 +4093,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5353,
       "Dive Description": "Reverse 2\u00bd Soms. 1\u00bd Twists",
@@ -4104,7 +4104,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5355,
       "Dive Description": "Reverse 2\u00bd Soms. 2\u00bd Twists",
@@ -4115,7 +4115,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5371,
       "Dive Description": "Reverse 3\u00bd Soms. \u00bd Twists",
@@ -4126,7 +4126,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5373,
       "Dive Description": "Reverse 3\u00bd Soms. 1\u00bd Twist",
@@ -4137,7 +4137,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5375,
       "Dive Description": "Reverse 3\u00bd Soms. 2\u00bd Twist",
@@ -4148,7 +4148,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5411,
       "Dive Description": "Inward Dive \u00bd Twist",
@@ -4159,7 +4159,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5412,
       "Dive Description": "Inward Dive 1 Twist",
@@ -4170,7 +4170,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5421,
       "Dive Description": "Inward Somersault \u00bd Twist",
@@ -4181,7 +4181,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5422,
       "Dive Description": "Inward Somersault 1 Twist",
@@ -4192,7 +4192,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5432,
       "Dive Description": "Inward 1\u00bd Somersaults 1 Twist",
@@ -4203,7 +4203,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5434,
       "Dive Description": "Inward 1\u00bd Somersaults 2 Twists",
@@ -4214,7 +4214,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 5,
       "Dive Number": 5436,
       "Dive Description": "Inward 1\u00bd Somersaults 3 Twists",
@@ -4225,7 +4225,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 610,
       "Dive Description": "Armstand Dive (armstand with body back to water)",
@@ -4236,7 +4236,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 611,
       "Dive Description": "Armstand Forward \u00bd Somersault",
@@ -4247,7 +4247,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 612,
       "Dive Description": "Armstand Forward 1 Somersault",
@@ -4258,7 +4258,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 614,
       "Dive Description": "Armstand Forward 2 Somersaults",
@@ -4269,7 +4269,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 616,
       "Dive Description": "Armstand Forward 3 Somersaults",
@@ -4280,7 +4280,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 621,
       "Dive Description": "Armstand Back \u00bd Somersault",
@@ -4291,7 +4291,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 622,
       "Dive Description": "Armstand Back Somersault",
@@ -4302,7 +4302,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 623,
       "Dive Description": "Armstand Back 1\u00bd Somersaults",
@@ -4313,7 +4313,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 624,
       "Dive Description": "Armstand Back 2 Somersaults",
@@ -4324,7 +4324,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 626,
       "Dive Description": "Armstand Back 3 Somersaults",
@@ -4335,7 +4335,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 628,
       "Dive Description": "Armstand Back 4 Somersaults",
@@ -4346,7 +4346,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 631,
       "Dive Description": "Armstand Reverse \u00bd Somersault",
@@ -4357,7 +4357,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 632,
       "Dive Description": "Armstand Reverse 1 Somersault",
@@ -4368,7 +4368,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 633,
       "Dive Description": "Armstand Reverse 1\u00bd Somersaults",
@@ -4379,7 +4379,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 634,
       "Dive Description": "Armstand Reverse 2 Somersaults",
@@ -4390,7 +4390,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 636,
       "Dive Description": "Armstand Reverse  3 Somersaults",
@@ -4401,7 +4401,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 638,
       "Dive Description": "Armstand Reverse  4 Somersaults",
@@ -4412,7 +4412,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 640,
       "Dive Description": "Armstand  Dive (armstand with body front to water)",
@@ -4423,7 +4423,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 641,
       "Dive Description": "Armstand Inward 1/2 Somer-sault",
@@ -4434,7 +4434,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 642,
       "Dive Description": "Armstand Inward  1  Somer-sault",
@@ -4445,7 +4445,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 644,
       "Dive Description": "Armstand  Inward  2  Somer-saults",
@@ -4456,7 +4456,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 646,
       "Dive Description": "Armstand  Inward  3  Somer-saults",
@@ -4467,7 +4467,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 6122,
       "Dive Description": "Armstand Fwd  Som. 1 Twist",
@@ -4478,7 +4478,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 6124,
       "Dive Description": "Armstand Fwd  Som. 2 Twists",
@@ -4489,7 +4489,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 6142,
       "Dive Description": "Armstand Fwd 2 Soms. 1 Twist",
@@ -4500,7 +4500,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 6144,
       "Dive Description": "Armstand Fwd 2 Soms. 2 Twists",
@@ -4511,7 +4511,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 6162,
       "Dive Description": "Armstand Fwd 3 Soms. 1 Twist",
@@ -4522,7 +4522,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 6221,
       "Dive Description": "Armstand Back Som. \u00bd Twist",
@@ -4533,7 +4533,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 6241,
       "Dive Description": "Armstand Back 2 Soms. \u00bd Twist",
@@ -4544,7 +4544,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 6243,
       "Dive Description": "Armstand Back 2 Soms 1\u00bd Twists",
@@ -4555,7 +4555,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 6245,
       "Dive Description": "Armstand Back 2 Soms 2\u00bd Twists",
@@ -4566,7 +4566,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 6247,
       "Dive Description": "Armstand Back 2 Soms 3\u00bd Twists",
@@ -4577,7 +4577,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 6261,
       "Dive Description": "Armstand Back 3 Soms. \u00bd Twist",
@@ -4588,7 +4588,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 6263,
       "Dive Description": "Armstand Back 3 Soms 1\u00bd Twists",
@@ -4599,7 +4599,7 @@
     },
     {
       "Event": "Platform",
-      "Board": "7M",
+      "Board": "7.5M",
       "Group": 6,
       "Dive Number": 6265,
       "Dive Description": "Armstand Back 3 Soms 2\u00bd Twists",
