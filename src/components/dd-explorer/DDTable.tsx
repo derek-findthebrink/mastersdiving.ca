@@ -3,6 +3,8 @@ import * as React from "react";
 import { CompactTable, type Column } from "@table-library/react-table-library/compact";
 import { useTheme } from "@table-library/react-table-library/theme";
 import { getTheme } from "@table-library/react-table-library/baseline";
+import { useRowSelect } from "@table-library/react-table-library/select";
+import { SelectClickTypes, SelectTypes } from "@table-library/react-table-library/select";
 
 import DDData from './wa__data-table.json'
 import type { Layout } from "@table-library/react-table-library/types/layout";
@@ -13,6 +15,7 @@ const ALL_EVENTS: EventType[] = ['Springboard', 'Platform'];
 const ALL_BOARDS = ['1M', '3M', '5M', '7.5M', '10M'] as const;
 const BOARD_ORDER: string[] = ['1M', '3M', '5M', '7.5M', '10M'];
 const ALL_GROUPS = [1, 2, 3, 4, 5, 6] as const;
+const POSITIONS = ['A', 'B', 'C', 'D'] as const;
 
 interface DiveNode {
   id: number;
@@ -34,6 +37,12 @@ const nodes: DiveNode[] = DDData.data.map((item, index) => {
   } as DiveNode;
 });
 
+const parseDD = (val: string): number | null => {
+  if (val === '-' || val === 'x') return null;
+  const n = parseFloat(val);
+  return Number.isNaN(n) ? null : n;
+};
+
 const columnEventRenderer = (item: DiveNode) => {
   const event = item['Event'];
   if (event === 'Springboard') return 'SP';
@@ -41,27 +50,7 @@ const columnEventRenderer = (item: DiveNode) => {
   return '';
 };
 
-const columnDegreeOfDifficultyRenderer = (position: 'A' | 'B' | 'C' | 'D') => (item: DiveNode) => {
-  const classes = ['text-center'];
-  const val = item[position].toString();
-  if (val === '-' || val === 'x') classes.push('text-gray-400');
-  if (val !== '-' && val !== 'x') classes.push('font-bold', 'text-black');
-  return <span className={classes.join(' ')} style={{ width: '2em' }}>{val}</span>;
-};
-
 const COLUMN_LABELS = ['Event', 'Board', 'Group', 'Dive Number', 'Dive Description', 'A', 'B', 'C', 'D'] as const;
-
-const COLUMN_DEFS: Omit<Column<DiveNode>, 'hide'>[] = [
-  { label: "Event", renderCell: columnEventRenderer, resize: false },
-  { label: "Board", renderCell: (item) => item['Board'], resize: false },
-  { label: "Group", renderCell: (item) => item['Group'], resize: false },
-  { label: "Dive Number", renderCell: (item) => item['Dive Number'], resize: false },
-  { label: "Dive Description", renderCell: (item) => item['Dive Description'], resize: true },
-  { label: 'A', renderCell: columnDegreeOfDifficultyRenderer('A'), resize: false },
-  { label: 'B', renderCell: columnDegreeOfDifficultyRenderer('B'), resize: false },
-  { label: 'C', renderCell: columnDegreeOfDifficultyRenderer('C'), resize: false },
-  { label: 'D', renderCell: columnDegreeOfDifficultyRenderer('D'), resize: false },
-];
 
 const defaultColumnVisibility: Record<string, boolean> = {
   Event: false,
@@ -76,24 +65,43 @@ const defaultColumnVisibility: Record<string, boolean> = {
 };
 
 const DDTable = () => {
-  const theme = useTheme(getTheme());
+  const customTheme = {
+    Row: `
+      cursor: pointer;
+
+      &.row-select-selected, &.row-select-single-selected {
+        background-color: rgb(219 234 254);
+        color: rgb(30 64 175);
+      }
+    `,
+  };
+  const theme = useTheme([getTheme(), customTheme]);
 
   const [events, setEvents] = React.useState<EventType[]>(() => [...ALL_EVENTS]);
   const [boards, setBoards] = React.useState<string[]>(() => [...ALL_BOARDS]);
   const [groups, setGroups] = React.useState<number[]>(() => [...ALL_GROUPS]);
   const [diveNumber, setDiveNumber] = React.useState<number | null>(null);
   const [diveNumberInput, setDiveNumberInput] = React.useState('');
+  const [ddLimit, setDdLimit] = React.useState<number | null>(null);
+  const [ddLimitInput, setDdLimitInput] = React.useState('');
   const [columnVisibility, setColumnVisibility] = React.useState<Record<string, boolean>>(() => ({ ...defaultColumnVisibility }));
   const [columnsOpen, setColumnsOpen] = React.useState(false);
 
   const filteredNodes = React.useMemo(() => {
-    const filtered = nodes.filter(
-      (n) =>
-        events.includes(n.Event) &&
-        boards.includes(n.Board) &&
-        groups.includes(n.Group) &&
-        (diveNumber == null || n['Dive Number'] === diveNumber)
-    );
+    const filtered = nodes.filter((n) => {
+      if (!events.includes(n.Event)) return false;
+      if (!boards.includes(n.Board)) return false;
+      if (!groups.includes(n.Group)) return false;
+      if (diveNumber != null && n['Dive Number'] !== diveNumber) return false;
+      if (ddLimit != null) {
+        const hasPositionUnderLimit = POSITIONS.some((pos) => {
+          const dd = parseDD(n[pos]);
+          return dd !== null && dd <= ddLimit;
+        });
+        if (!hasPositionUnderLimit) return false;
+      }
+      return true;
+    });
     return [...filtered].sort((a, b) => {
       const boardA = BOARD_ORDER.indexOf(a.Board);
       const boardB = BOARD_ORDER.indexOf(b.Board);
@@ -101,14 +109,50 @@ const DDTable = () => {
       if (a.Group !== b.Group) return a.Group - b.Group;
       return a['Dive Number'] - b['Dive Number'];
     });
-  }, [events, boards, groups, diveNumber]);
-
-  const columns = React.useMemo<Column<DiveNode>[]>(
-    () => COLUMN_DEFS.map((col) => ({ ...col, hide: !columnVisibility[col.label] })),
-    [columnVisibility]
-  );
+  }, [events, boards, groups, diveNumber, ddLimit]);
 
   const data = React.useMemo(() => ({ nodes: filteredNodes }), [filteredNodes]);
+
+  const select = useRowSelect(data, {
+    state: { id: null },
+  }, {
+    clickType: SelectClickTypes.RowClick,
+    rowSelect: SelectTypes.SingleSelect,
+  });
+
+  const makeDDRenderer = React.useCallback(
+    (position: 'A' | 'B' | 'C' | 'D') => (item: DiveNode) => {
+      const classes = ['text-center'];
+      const val = item[position].toString();
+      const numeric = parseDD(val);
+
+      if (val === '-' || val === 'x') {
+        classes.push('text-gray-400');
+      } else if (ddLimit != null && numeric !== null && numeric > ddLimit) {
+        classes.push('text-gray-400');
+      } else {
+        classes.push('font-bold', 'text-black');
+      }
+
+      return <span className={classes.join(' ')} style={{ width: '2em' }}>{val}</span>;
+    },
+    [ddLimit]
+  );
+
+  const columns = React.useMemo<Column<DiveNode>[]>(() => {
+    const defs: Omit<Column<DiveNode>, 'hide'>[] = [
+      { label: "Event", renderCell: columnEventRenderer, resize: false },
+      { label: "Board", renderCell: (item) => item['Board'], resize: false },
+      { label: "Group", renderCell: (item) => item['Group'], resize: false },
+      { label: "Dive Number", renderCell: (item) => item['Dive Number'], resize: false },
+      { label: "Dive Description", renderCell: (item) => item['Dive Description'], resize: true },
+      { label: 'A', renderCell: makeDDRenderer('A'), resize: false },
+      { label: 'B', renderCell: makeDDRenderer('B'), resize: false },
+      { label: 'C', renderCell: makeDDRenderer('C'), resize: false },
+      { label: 'D', renderCell: makeDDRenderer('D'), resize: false },
+    ];
+    return defs.map((col) => ({ ...col, hide: !columnVisibility[col.label] }));
+  }, [columnVisibility, makeDDRenderer]);
 
   const toggleEvent = (event: EventType) => {
     setEvents((prev) =>
@@ -133,6 +177,11 @@ const DDTable = () => {
     setDiveNumber(Number.isNaN(parsed) ? null : parsed);
   };
 
+  const applyDdLimit = () => {
+    const parsed = ddLimitInput.trim() === '' ? null : parseFloat(ddLimitInput.trim());
+    setDdLimit(parsed === null || Number.isNaN(parsed) ? null : parsed);
+  };
+
   const toggleColumn = (label: string) => {
     setColumnVisibility((prev) => ({ ...prev, [label]: !prev[label] }));
   };
@@ -143,6 +192,8 @@ const DDTable = () => {
     setGroups([...ALL_GROUPS]);
     setDiveNumber(null);
     setDiveNumberInput('');
+    setDdLimit(null);
+    setDdLimitInput('');
   };
 
   const layout: Layout = {
@@ -227,6 +278,22 @@ const DDTable = () => {
           />
         </fieldset>
 
+        <fieldset className="flex flex-wrap items-center gap-2 border-0 p-0">
+          <legend className="sr-only">DD Limit</legend>
+          <span className="text-sm font-medium text-slate-700 dark:text-slate-300">DD Limit:</span>
+          <input
+            type="text"
+            inputMode="decimal"
+            placeholder="None"
+            value={ddLimitInput}
+            onChange={(e) => setDdLimitInput(e.target.value)}
+            onBlur={applyDdLimit}
+            onKeyDown={(e) => e.key === 'Enter' && applyDdLimit()}
+            className="w-20 rounded border border-slate-300 bg-white px-2 py-1 text-sm text-slate-800 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200"
+            aria-label="Filter by maximum degree of difficulty (optional)"
+          />
+        </fieldset>
+
         <div className="relative">
           <button
             type="button"
@@ -287,6 +354,7 @@ const DDTable = () => {
             data={data}
             theme={theme}
             layout={layout}
+            select={select}
             virtualizedOptions={VIRTUALIZED_OPTIONS}
           />
         </div>
