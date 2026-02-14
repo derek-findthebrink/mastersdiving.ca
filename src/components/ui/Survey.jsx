@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import sc from 'survey-core';
 // import sru from 'survey-react-ui';
-import 'survey-core/modern.min.css';
+import 'survey-core/survey-core.min.css';
 import surveyStructure from './idive-program-cancellation-survey.js';
 
 const API_URL = 'http://localhost:8000/api';

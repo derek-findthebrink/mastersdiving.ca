@@ -1,10 +1,10 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { defineConfig, squooshImageService } from 'astro/config';
+import { defineConfig } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
@@ -29,9 +29,6 @@ export default defineConfig({
   output: 'static',
 
   integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
     sitemap(),
     mdx(),
     icon({
@@ -50,47 +47,26 @@ export default defineConfig({
         ],
       },
     }),
-    ...whenExternalScripts(() =>
-      partytown({
-        config: {
-          forward: ['dataLayer.push'],
-        },
-      })
-    ),
+    ...whenExternalScripts(() => partytown({ config: { forward: ['dataLayer.push'] } })),
     compress({
       CSS: true,
-      HTML: {
-        'html-minifier-terser': {
-          removeAttributeQuotes: false,
-        },
-      },
+      HTML: { 'html-minifier-terser': { removeAttributeQuotes: false } },
       Image: false,
       JavaScript: true,
       SVG: false,
       Logger: 1,
     }),
 
-    astrowind({
-      config: './src/config.yaml',
-    }),
+    astrowind({ config: './src/config.yaml' }),
     react(),
   ],
 
-  image: {
-    service: squooshImageService(),
-    domains: ['cdn.pixabay.com'],
-  },
+  image: { domains: ['cdn.pixabay.com'] },
 
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],
     rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin, [rehypeExternalLinks, { target: '_blank' }]],
   },
 
-  vite: {
-    resolve: {
-      alias: {
-        '~': path.resolve(__dirname, './src'),
-      },
-    },
-  },
+  vite: { plugins: [tailwindcss()], resolve: { alias: { '~': path.resolve(__dirname, './src') } } },
 });
