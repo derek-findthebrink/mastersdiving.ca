@@ -19,10 +19,10 @@ export const COLUMN_LABELS = [
 ] as const;
 
 export const COLUMN_WIDTHS: Record<string, string> = {
-  A: '3em',
-  B: '3em',
-  C: '3em',
-  D: '3em',
+  A: '4em',
+  B: '4em',
+  C: '4em',
+  D: '4em',
 };
 
 export const DEFAULT_COLUMN_VISIBILITY: Record<string, boolean> = {
