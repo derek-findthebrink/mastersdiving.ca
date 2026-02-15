@@ -12,15 +12,15 @@ import type { Layout } from "@table-library/react-table-library/types/layout";
 type EventType = 'Springboard' | 'Platform';
 
 const ALL_EVENTS: EventType[] = ['Springboard', 'Platform'];
-const ALL_BOARDS = ['1M', '3M', '5M', '7.5M', '10M'] as const;
-const BOARD_ORDER: string[] = ['1M', '3M', '5M', '7.5M', '10M'];
+const ALL_BOARDS = ['1m', '3m', '5m', '7.5m', '10m'] as const;
+const BOARD_ORDER: string[] = ['1m', '3m', '5m', '7.5m', '10m'];
 const ALL_GROUPS = [1, 2, 3, 4, 5, 6] as const;
 const POSITIONS = ['A', 'B', 'C', 'D'] as const;
 
 interface DiveNode {
   id: number;
   Event: EventType;
-  Board: '1M' | '3M' | '5M' | '7.5M' | '10M';
+  Board: '1m' | '3m' | '5m' | '7.5m' | '10m';
   Group: 1 | 2 | 3 | 4 | 5 | 6;
   'Dive Number': number;
   'Dive Description': string;
@@ -65,17 +65,6 @@ const defaultColumnVisibility: Record<string, boolean> = {
 };
 
 const DDTable = () => {
-  const customTheme = {
-    Row: `
-      cursor: pointer;
-
-      &.row-select-selected, &.row-select-single-selected {
-        background-color: rgb(219 234 254);
-        color: rgb(30 64 175);
-      }
-    `,
-  };
-  const theme = useTheme([getTheme(), customTheme]);
 
   const [events, setEvents] = React.useState<EventType[]>(() => [...ALL_EVENTS]);
   const [boards, setBoards] = React.useState<string[]>(() => [...ALL_BOARDS]);
@@ -86,6 +75,29 @@ const DDTable = () => {
   const [ddLimitInput, setDdLimitInput] = React.useState('');
   const [columnVisibility, setColumnVisibility] = React.useState<Record<string, boolean>>(() => ({ ...defaultColumnVisibility }));
   const [columnsOpen, setColumnsOpen] = React.useState(false);
+
+  const customTheme = {
+    BaseCell: `
+      &:not(:last-of-type) {
+        white-space: nowrap;
+      }
+    `,
+    HeaderCell: `
+      &:nth-last-of-type(-n+4) {
+        font-weight: normal;
+      }
+    `,
+    Row: `
+      cursor: pointer;
+
+      &.row-select-selected, &.row-select-single-selected {
+        background-color: rgb(219 234 254);
+        color: rgb(30 64 175);
+      }
+    `,
+  };
+
+  const theme = useTheme([getTheme(), customTheme]);
 
   const filteredNodes = React.useMemo(() => {
     const filtered = nodes.filter((n) => {
@@ -141,15 +153,15 @@ const DDTable = () => {
 
   const columns = React.useMemo<Column<DiveNode>[]>(() => {
     const defs: Omit<Column<DiveNode>, 'hide'>[] = [
-      { label: "Event", renderCell: columnEventRenderer, resize: false },
-      { label: "Board", renderCell: (item) => item['Board'], resize: false },
-      { label: "Group", renderCell: (item) => item['Group'], resize: false },
-      { label: "Dive Number", renderCell: (item) => item['Dive Number'], resize: false },
+      { label: "Event", renderCell: columnEventRenderer, resize: true },
+      { label: "Board", renderCell: (item) => item['Board'], resize: true },
+      { label: "Group", renderCell: (item) => item['Group'], resize: true },
+      { label: "Dive Number", renderCell: (item) => item['Dive Number'], resize: true },
       { label: "Dive Description", renderCell: (item) => item['Dive Description'], resize: true },
-      { label: 'A', renderCell: makeDDRenderer('A'), resize: false },
-      { label: 'B', renderCell: makeDDRenderer('B'), resize: false },
-      { label: 'C', renderCell: makeDDRenderer('C'), resize: false },
-      { label: 'D', renderCell: makeDDRenderer('D'), resize: false },
+      { label: 'A', renderCell: makeDDRenderer('A'), resize: true },
+      { label: 'B', renderCell: makeDDRenderer('B'), resize: true },
+      { label: 'C', renderCell: makeDDRenderer('C'), resize: true },
+      { label: 'D', renderCell: makeDDRenderer('D'), resize: true },
     ];
     return defs.map((col) => ({ ...col, hide: !columnVisibility[col.label] }));
   }, [columnVisibility, makeDDRenderer]);
