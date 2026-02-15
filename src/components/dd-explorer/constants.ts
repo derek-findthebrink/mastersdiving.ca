@@ -42,10 +42,14 @@ export const CUSTOM_THEME = {
     &:not(:last-of-type) {
       white-space: nowrap;
     }
+    &:nth-last-of-type(-n+4) {
+      text-align: center;
+    }
   `,
   HeaderCell: `
     &:nth-last-of-type(-n+4) {
       font-weight: normal;
+      text-align: center;
     }
   `,
   Row: `
