@@ -52,6 +52,13 @@ const columnEventRenderer = (item: DiveNode) => {
 
 const COLUMN_LABELS = ['Event', 'Board', 'Group', 'Dive Number', 'Dive Description', 'A', 'B', 'C', 'D'] as const;
 
+const COLUMN_WIDTHS: Record<string, string> = {
+  A: '60px',
+  B: '60px',
+  C: '60px',
+  D: '60px',
+};
+
 const defaultColumnVisibility: Record<string, boolean> = {
   Event: false,
   Board: true,
@@ -208,9 +215,21 @@ const DDTable = () => {
     setDdLimitInput('');
   };
 
+  const resizedLayout = React.useMemo(() => {
+    return columns
+      .filter((col) => !col.hide)
+      .map((col) => COLUMN_WIDTHS[col.label] || 'minmax(0px, 1fr)')
+      .join(' ');
+  }, [columns]);
+
+  const tableKey = React.useMemo(() => {
+    return columns.filter((col) => !col.hide).map((col) => col.label).join(',');
+  }, [columns]);
+
   const layout: Layout = {
     isDiv: true,
     fixedHeader: true,
+    resizedLayout,
   };
 
   const VIRTUALIZED_OPTIONS = {
@@ -362,6 +381,7 @@ const DDTable = () => {
       ) : (
         <div style={{ height: 400 }}>
           <CompactTable
+            key={tableKey}
             columns={columns}
             data={data}
             theme={theme}
