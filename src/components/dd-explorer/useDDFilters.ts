@@ -1,0 +1,126 @@
+import * as React from 'react';
+
+import type { EventType, DiveNode } from './types';
+import { ALL_EVENTS, ALL_BOARDS, ALL_GROUPS, BOARD_ORDER, POSITIONS, DEFAULT_COLUMN_VISIBILITY } from './constants';
+import { parseDD, nodes } from './utils';
+
+export function useDDFilters() {
+  const [events, setEvents] = React.useState<EventType[]>(() => [...ALL_EVENTS]);
+  const [boards, setBoards] = React.useState<string[]>(() => [...ALL_BOARDS]);
+  const [groups, setGroups] = React.useState<number[]>(() => [...ALL_GROUPS]);
+  const [diveNumber, setDiveNumber] = React.useState<number | null>(null);
+  const [diveNumberInput, setDiveNumberInput] = React.useState('');
+  const [ddLimit, setDdLimit] = React.useState<number | null>(null);
+  const [ddLimitInput, setDdLimitInput] = React.useState('');
+  const [columnVisibility, setColumnVisibility] = React.useState<Record<string, boolean>>(
+    () => ({ ...DEFAULT_COLUMN_VISIBILITY })
+  );
+  const [columnsOpen, setColumnsOpen] = React.useState(false);
+
+  const filteredNodes = React.useMemo(() => {
+    const filtered = nodes.filter((n) => {
+      if (!events.includes(n.Event)) return false;
+      if (!boards.includes(n.Board)) return false;
+      if (!groups.includes(n.Group)) return false;
+      if (diveNumber != null && n['Dive Number'] !== diveNumber) return false;
+      if (ddLimit != null) {
+        const hasPositionUnderLimit = POSITIONS.some((pos) => {
+          const dd = parseDD(n[pos]);
+          return dd !== null && dd <= ddLimit;
+        });
+        if (!hasPositionUnderLimit) return false;
+      }
+      return true;
+    });
+    return [...filtered].sort((a, b) => {
+      const boardA = BOARD_ORDER.indexOf(a.Board);
+      const boardB = BOARD_ORDER.indexOf(b.Board);
+      if (boardA !== boardB) return boardA - boardB;
+      if (a.Group !== b.Group) return a.Group - b.Group;
+      return a['Dive Number'] - b['Dive Number'];
+    });
+  }, [events, boards, groups, diveNumber, ddLimit]);
+
+  const toggleEvent = React.useCallback((event: EventType) => {
+    setEvents((prev) =>
+      prev.includes(event) ? prev.filter((e) => e !== event) : [...prev, event]
+    );
+  }, []);
+
+  const toggleBoard = React.useCallback((board: string) => {
+    setBoards((prev) =>
+      prev.includes(board) ? prev.filter((b) => b !== board) : [...prev, board]
+    );
+  }, []);
+
+  const toggleGroup = React.useCallback((group: number) => {
+    setGroups((prev) =>
+      prev.includes(group) ? prev.filter((g) => g !== group) : [...prev, group]
+    );
+  }, []);
+
+  const applyDiveNumber = React.useCallback(() => {
+    const parsed = diveNumberInput.trim() === '' ? null : parseInt(diveNumberInput.trim(), 10);
+    setDiveNumber(Number.isNaN(parsed) ? null : parsed);
+  }, [diveNumberInput]);
+
+  const applyDdLimit = React.useCallback(() => {
+    const parsed = ddLimitInput.trim() === '' ? null : parseFloat(ddLimitInput.trim());
+    setDdLimit(parsed === null || Number.isNaN(parsed) ? null : parsed);
+  }, [ddLimitInput]);
+
+  const toggleColumn = React.useCallback((label: string) => {
+    setColumnVisibility((prev) => ({ ...prev, [label]: !prev[label] }));
+  }, []);
+
+  const toggleColumnsOpen = React.useCallback(() => {
+    setColumnsOpen((o) => !o);
+  }, []);
+
+  const closeColumns = React.useCallback(() => {
+    setColumnsOpen(false);
+  }, []);
+
+  const resetFilters = React.useCallback(() => {
+    setEvents([...ALL_EVENTS]);
+    setBoards([...ALL_BOARDS]);
+    setGroups([...ALL_GROUPS]);
+    setDiveNumber(null);
+    setDiveNumberInput('');
+    setDdLimit(null);
+    setDdLimitInput('');
+  }, []);
+
+  return {
+    // Filter state
+    events,
+    boards,
+    groups,
+    diveNumber,
+    diveNumberInput,
+    ddLimit,
+    ddLimitInput,
+    filteredNodes,
+
+    // Column state
+    columnVisibility,
+    columnsOpen,
+
+    // Filter actions
+    toggleEvent,
+    toggleBoard,
+    toggleGroup,
+    setDiveNumberInput,
+    applyDiveNumber,
+    setDdLimitInput,
+    applyDdLimit,
+    resetFilters,
+
+    // Column actions
+    toggleColumn,
+    toggleColumnsOpen,
+    closeColumns,
+  };
+}
+
+export type DDFiltersReturn = ReturnType<typeof useDDFilters>;
