@@ -15,7 +15,13 @@ export function useDDFilters() {
   const [ddMin, setDdMin] = React.useState<number | null>(null);
   const [ddMinInput, setDdMinInput] = React.useState('');
   const [columnVisibility, setColumnVisibility] = React.useState<Record<string, boolean>>(
-    () => ({ ...DEFAULT_COLUMN_VISIBILITY })
+    () => {
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+      return {
+        ...DEFAULT_COLUMN_VISIBILITY,
+        'Dive Description': isMobile ? false : DEFAULT_COLUMN_VISIBILITY['Dive Description'],
+      };
+    }
   );
   const [columnsOpen, setColumnsOpen] = React.useState(false);
 
@@ -138,6 +144,33 @@ export function useDDFilters() {
     const availableBoards = getAvailableBoards(events);
     setBoards((prev) => prev.filter((b) => availableBoards.includes(b as Board)));
   }, [events]);
+
+  // Debounce and auto-apply dive number input
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      const parsed = diveNumberInput.trim() === '' ? null : parseInt(diveNumberInput.trim(), 10);
+      setDiveNumber(Number.isNaN(parsed) ? null : parsed);
+    }, 300);
+    return () => clearTimeout(timeout);
+  }, [diveNumberInput]);
+
+  // Debounce and auto-apply DD limit input
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      const parsed = ddLimitInput.trim() === '' ? null : parseFloat(ddLimitInput.trim());
+      setDdLimit(parsed === null || Number.isNaN(parsed) ? null : parsed);
+    }, 300);
+    return () => clearTimeout(timeout);
+  }, [ddLimitInput]);
+
+  // Debounce and auto-apply DD min input
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      const parsed = ddMinInput.trim() === '' ? null : parseFloat(ddMinInput.trim());
+      setDdMin(parsed === null || Number.isNaN(parsed) ? null : parsed);
+    }, 300);
+    return () => clearTimeout(timeout);
+  }, [ddMinInput]);
 
   return {
     // Filter state

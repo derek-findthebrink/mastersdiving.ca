@@ -18,11 +18,8 @@ type DDFilterToolbarProps = Pick<
   | 'setBoardSingle'
   | 'toggleGroup'
   | 'setDiveNumberInput'
-  | 'applyDiveNumber'
   | 'setDdLimitInput'
-  | 'applyDdLimit'
   | 'setDdMinInput'
-  | 'applyDdMin'
   | 'resetFilters'
   | 'toggleColumn'
   | 'toggleColumnsOpen'
@@ -42,11 +39,8 @@ const DDFilterToolbar: React.FC<DDFilterToolbarProps> = ({
   setBoardSingle,
   toggleGroup,
   setDiveNumberInput,
-  applyDiveNumber,
   setDdLimitInput,
-  applyDdLimit,
   setDdMinInput,
-  applyDdMin,
   resetFilters,
   toggleColumn,
   toggleColumnsOpen,
@@ -68,11 +62,8 @@ const DDFilterToolbar: React.FC<DDFilterToolbarProps> = ({
       columnsOpen={columnsOpen}
       toggleGroup={toggleGroup}
       setDiveNumberInput={setDiveNumberInput}
-      applyDiveNumber={applyDiveNumber}
       setDdLimitInput={setDdLimitInput}
-      applyDdLimit={applyDdLimit}
       setDdMinInput={setDdMinInput}
-      applyDdMin={applyDdMin}
       resetFilters={resetFilters}
       toggleColumn={toggleColumn}
       toggleColumnsOpen={toggleColumnsOpen}

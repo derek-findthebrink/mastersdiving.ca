@@ -14,11 +14,8 @@ type DDAdvancedFiltersProps = Pick<
   | 'columnsOpen'
   | 'toggleGroup'
   | 'setDiveNumberInput'
-  | 'applyDiveNumber'
   | 'setDdLimitInput'
-  | 'applyDdLimit'
   | 'setDdMinInput'
-  | 'applyDdMin'
   | 'resetFilters'
   | 'toggleColumn'
   | 'toggleColumnsOpen'
@@ -40,11 +37,8 @@ const DDAdvancedFilters: React.FC<DDAdvancedFiltersProps> = ({
   columnsOpen,
   toggleGroup,
   setDiveNumberInput,
-  applyDiveNumber,
   setDdLimitInput,
-  applyDdLimit,
   setDdMinInput,
-  applyDdMin,
   resetFilters,
   toggleColumn,
   toggleColumnsOpen,
@@ -80,8 +74,6 @@ const DDAdvancedFilters: React.FC<DDAdvancedFiltersProps> = ({
         placeholder="All"
         value={diveNumberInput}
         onChange={(e) => setDiveNumberInput(e.target.value)}
-        onBlur={applyDiveNumber}
-        onKeyDown={(e) => e.key === 'Enter' && applyDiveNumber()}
         className="w-20 rounded border border-slate-300 bg-white px-2 py-1 text-sm text-slate-800 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200"
         aria-label="Filter by dive number (optional)"
       />
@@ -96,8 +88,6 @@ const DDAdvancedFilters: React.FC<DDAdvancedFiltersProps> = ({
         placeholder="None"
         value={ddMinInput}
         onChange={(e) => setDdMinInput(e.target.value)}
-        onBlur={applyDdMin}
-        onKeyDown={(e) => e.key === 'Enter' && applyDdMin()}
         className="w-20 rounded border border-slate-300 bg-white px-2 py-1 text-sm text-slate-800 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200"
         aria-label="Filter by minimum degree of difficulty (optional)"
       />
@@ -112,8 +102,6 @@ const DDAdvancedFilters: React.FC<DDAdvancedFiltersProps> = ({
         placeholder="None"
         value={ddLimitInput}
         onChange={(e) => setDdLimitInput(e.target.value)}
-        onBlur={applyDdLimit}
-        onKeyDown={(e) => e.key === 'Enter' && applyDdLimit()}
         className="w-20 rounded border border-slate-300 bg-white px-2 py-1 text-sm text-slate-800 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200"
         aria-label="Filter by maximum degree of difficulty (optional)"
       />
