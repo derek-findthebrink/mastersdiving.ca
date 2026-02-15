@@ -11,6 +11,7 @@ import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import DDExplorer from '~/components/dd-explorer/DDExplorer.tsx';
 import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
@@ -23,11 +24,27 @@ const metadata = {
   <!-- Hero Widget ******************* -->
 
   <!-- <Hero image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}> -->
-  <Hero>
+  <!-- <Hero>
     <Fragment slot="title"> Welcome to Masters Diving Canada </Fragment>
 
     <Fragment slot="subtitle"> This site is still under construction but please check back again soon! </Fragment>
-  </Hero>
+  </Hero> -->
+
+  <!-- DD Explorer Section ************ -->
+
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-6xl">
+    <h2 class="font-bold font-heading text-3xl md:text-4xl leading-tighter tracking-tighter mb-4">
+      Diving Degree of Difficulty Explorer
+    </h2>
+    <div class="prose prose-lg dark:prose-invert mb-6">
+      <p>
+        Explore diving degrees of difficulty across all boards. This dataset was loaded from the November 2024 issue of
+        World Aquatics Competition regulations.
+      </p>
+    </div>
+
+    <DDExplorer client:only="react" />
+  </section>
 
   <!-- Note Widget ******************* -->
 
