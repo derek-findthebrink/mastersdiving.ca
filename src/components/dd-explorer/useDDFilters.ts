@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import type { EventType } from './types';
-import { ALL_EVENTS, ALL_BOARDS, ALL_GROUPS, BOARD_ORDER, POSITIONS, DEFAULT_COLUMN_VISIBILITY } from './constants';
+import type { EventType, Board } from './types';
+import { ALL_EVENTS, ALL_GROUPS, BOARD_ORDER, POSITIONS, DEFAULT_COLUMN_VISIBILITY, getAvailableBoards } from './constants';
 import { parseDD, nodes } from './utils';
 
 export function useDDFilters() {
-  const [events, setEvents] = React.useState<EventType[]>(() => [...ALL_EVENTS]);
-  const [boards, setBoards] = React.useState<string[]>(() => [...ALL_BOARDS]);
+  const [events, setEvents] = React.useState<EventType[]>(() => []);
+  const [boards, setBoards] = React.useState<string[]>(() => []);
   const [groups, setGroups] = React.useState<number[]>(() => [...ALL_GROUPS]);
   const [diveNumber, setDiveNumber] = React.useState<number | null>(null);
   const [diveNumberInput, setDiveNumberInput] = React.useState('');
@@ -21,8 +21,8 @@ export function useDDFilters() {
 
   const filteredNodes = React.useMemo(() => {
     const filtered = nodes.filter((n) => {
-      if (!events.includes(n.Event)) return false;
-      if (!boards.includes(n.Board)) return false;
+      if (events.length > 0 && !events.includes(n.Event)) return false;
+      if (boards.length > 0 && !boards.includes(n.Board)) return false;
       if (!groups.includes(n.Group)) return false;
       if (diveNumber != null && n['Dive Number'] !== diveNumber) return false;
       if (ddLimit != null) {
@@ -68,6 +68,31 @@ export function useDDFilters() {
     );
   }, []);
 
+  const setEventAll = React.useCallback(() => {
+    setEvents([...ALL_EVENTS]);
+  }, []);
+
+  const setEventSingle = React.useCallback((event: EventType) => {
+    setEvents((prev) =>
+      prev.includes(event) && prev.length === 1
+        ? [] // If clicking the only selected event, deselect it
+        : [event] // Otherwise, exclusively select this event
+    );
+  }, []);
+
+  const setBoardAll = React.useCallback(() => {
+    const availableBoards = getAvailableBoards(events);
+    setBoards(availableBoards);
+  }, [events]);
+
+  const setBoardSingle = React.useCallback((board: string) => {
+    setBoards((prev) =>
+      prev.includes(board)
+        ? prev.filter((b) => b !== board)
+        : [...prev, board]
+    );
+  }, []);
+
   const applyDiveNumber = React.useCallback(() => {
     const parsed = diveNumberInput.trim() === '' ? null : parseInt(diveNumberInput.trim(), 10);
     setDiveNumber(Number.isNaN(parsed) ? null : parsed);
@@ -96,8 +121,8 @@ export function useDDFilters() {
   }, []);
 
   const resetFilters = React.useCallback(() => {
-    setEvents([...ALL_EVENTS]);
-    setBoards([...ALL_BOARDS]);
+    setEvents([]);
+    setBoards([]);
     setGroups([...ALL_GROUPS]);
     setDiveNumber(null);
     setDiveNumberInput('');
@@ -106,6 +131,13 @@ export function useDDFilters() {
     setDdMin(null);
     setDdMinInput('');
   }, []);
+
+  // Auto-deselect boards that are not available for selected events
+  React.useEffect(() => {
+    if (events.length === 0) return;
+    const availableBoards = getAvailableBoards(events);
+    setBoards((prev) => prev.filter((b) => availableBoards.includes(b as Board)));
+  }, [events]);
 
   return {
     // Filter state
@@ -128,6 +160,10 @@ export function useDDFilters() {
     toggleEvent,
     toggleBoard,
     toggleGroup,
+    setEventAll,
+    setEventSingle,
+    setBoardAll,
+    setBoardSingle,
     setDiveNumberInput,
     applyDiveNumber,
     setDdLimitInput,
