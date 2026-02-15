@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import type { EventType } from './types';
 import { ALL_EVENTS, ALL_BOARDS, ALL_GROUPS } from './constants';
 import type { DDFiltersReturn } from './useDDFilters';
 import DDColumnPicker from './DDColumnPicker';
@@ -12,6 +11,7 @@ type DDFilterToolbarProps = Pick<
   | 'groups'
   | 'diveNumberInput'
   | 'ddLimitInput'
+  | 'ddMinInput'
   | 'columnVisibility'
   | 'columnsOpen'
   | 'toggleEvent'
@@ -21,6 +21,8 @@ type DDFilterToolbarProps = Pick<
   | 'applyDiveNumber'
   | 'setDdLimitInput'
   | 'applyDdLimit'
+  | 'setDdMinInput'
+  | 'applyDdMin'
   | 'resetFilters'
   | 'toggleColumn'
   | 'toggleColumnsOpen'
@@ -39,6 +41,7 @@ const DDFilterToolbar: React.FC<DDFilterToolbarProps> = ({
   groups,
   diveNumberInput,
   ddLimitInput,
+  ddMinInput,
   columnVisibility,
   columnsOpen,
   toggleEvent,
@@ -48,6 +51,8 @@ const DDFilterToolbar: React.FC<DDFilterToolbarProps> = ({
   applyDiveNumber,
   setDdLimitInput,
   applyDdLimit,
+  setDdMinInput,
+  applyDdMin,
   resetFilters,
   toggleColumn,
   toggleColumnsOpen,
@@ -119,6 +124,22 @@ const DDFilterToolbar: React.FC<DDFilterToolbarProps> = ({
         onKeyDown={(e) => e.key === 'Enter' && applyDiveNumber()}
         className="w-20 rounded border border-slate-300 bg-white px-2 py-1 text-sm text-slate-800 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200"
         aria-label="Filter by dive number (optional)"
+      />
+    </fieldset>
+
+    <fieldset className="flex flex-wrap items-center gap-2 border-0 p-0">
+      <legend className="sr-only">DD Minimum</legend>
+      <span className="text-sm font-medium text-slate-700 dark:text-slate-300">DD Min:</span>
+      <input
+        type="text"
+        inputMode="decimal"
+        placeholder="None"
+        value={ddMinInput}
+        onChange={(e) => setDdMinInput(e.target.value)}
+        onBlur={applyDdMin}
+        onKeyDown={(e) => e.key === 'Enter' && applyDdMin()}
+        className="w-20 rounded border border-slate-300 bg-white px-2 py-1 text-sm text-slate-800 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200"
+        aria-label="Filter by minimum degree of difficulty (optional)"
       />
     </fieldset>
 

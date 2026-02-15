@@ -15,7 +15,7 @@ import DDFilterToolbar from './DDFilterToolbar';
 
 const DDTable = () => {
   const filters = useDDFilters();
-  const { filteredNodes, ddLimit, columnVisibility } = filters;
+  const { filteredNodes, ddLimit, ddMin, columnVisibility } = filters;
 
   const theme = useTheme([getTheme(), CUSTOM_THEME]);
 
@@ -38,13 +38,15 @@ const DDTable = () => {
         classes.push('text-gray-400');
       } else if (ddLimit != null && numeric !== null && numeric > ddLimit) {
         classes.push('text-gray-400');
+      } else if (ddMin != null && numeric !== null && numeric < ddMin) {
+        classes.push('text-gray-400');
       } else {
         classes.push('font-bold', 'text-black');
       }
 
       return <span className={classes.join(' ')} style={{ width: '2em' }}>{val}</span>;
     },
-    [ddLimit]
+    [ddLimit, ddMin]
   );
 
   const columns = React.useMemo<Column<DiveNode>[]>(() => {

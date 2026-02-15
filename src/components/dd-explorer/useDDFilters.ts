@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { EventType, DiveNode } from './types';
+import type { EventType } from './types';
 import { ALL_EVENTS, ALL_BOARDS, ALL_GROUPS, BOARD_ORDER, POSITIONS, DEFAULT_COLUMN_VISIBILITY } from './constants';
 import { parseDD, nodes } from './utils';
 
@@ -12,6 +12,8 @@ export function useDDFilters() {
   const [diveNumberInput, setDiveNumberInput] = React.useState('');
   const [ddLimit, setDdLimit] = React.useState<number | null>(null);
   const [ddLimitInput, setDdLimitInput] = React.useState('');
+  const [ddMin, setDdMin] = React.useState<number | null>(null);
+  const [ddMinInput, setDdMinInput] = React.useState('');
   const [columnVisibility, setColumnVisibility] = React.useState<Record<string, boolean>>(
     () => ({ ...DEFAULT_COLUMN_VISIBILITY })
   );
@@ -30,6 +32,13 @@ export function useDDFilters() {
         });
         if (!hasPositionUnderLimit) return false;
       }
+      if (ddMin != null) {
+        const hasPositionOverMin = POSITIONS.some((pos) => {
+          const dd = parseDD(n[pos]);
+          return dd !== null && dd >= ddMin;
+        });
+        if (!hasPositionOverMin) return false;
+      }
       return true;
     });
     return [...filtered].sort((a, b) => {
@@ -39,7 +48,7 @@ export function useDDFilters() {
       if (a.Group !== b.Group) return a.Group - b.Group;
       return a['Dive Number'] - b['Dive Number'];
     });
-  }, [events, boards, groups, diveNumber, ddLimit]);
+  }, [events, boards, groups, diveNumber, ddLimit, ddMin]);
 
   const toggleEvent = React.useCallback((event: EventType) => {
     setEvents((prev) =>
@@ -69,6 +78,11 @@ export function useDDFilters() {
     setDdLimit(parsed === null || Number.isNaN(parsed) ? null : parsed);
   }, [ddLimitInput]);
 
+  const applyDdMin = React.useCallback(() => {
+    const parsed = ddMinInput.trim() === '' ? null : parseFloat(ddMinInput.trim());
+    setDdMin(parsed === null || Number.isNaN(parsed) ? null : parsed);
+  }, [ddMinInput]);
+
   const toggleColumn = React.useCallback((label: string) => {
     setColumnVisibility((prev) => ({ ...prev, [label]: !prev[label] }));
   }, []);
@@ -89,6 +103,8 @@ export function useDDFilters() {
     setDiveNumberInput('');
     setDdLimit(null);
     setDdLimitInput('');
+    setDdMin(null);
+    setDdMinInput('');
   }, []);
 
   return {
@@ -100,6 +116,8 @@ export function useDDFilters() {
     diveNumberInput,
     ddLimit,
     ddLimitInput,
+    ddMin,
+    ddMinInput,
     filteredNodes,
 
     // Column state
@@ -114,6 +132,8 @@ export function useDDFilters() {
     applyDiveNumber,
     setDdLimitInput,
     applyDdLimit,
+    setDdMinInput,
+    applyDdMin,
     resetFilters,
 
     // Column actions
