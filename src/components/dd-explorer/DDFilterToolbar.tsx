@@ -3,6 +3,7 @@ import * as React from 'react';
 import type { DDFiltersReturn } from './useDDFilters';
 import DDBasicFilters from './DDBasicFilters';
 import DDAdvancedFilters from './DDAdvancedFilters';
+import DDFilterActions from './DDFilterActions';
 
 type DDFilterToolbarProps = Pick<
   DDFiltersReturn,
@@ -12,6 +13,9 @@ type DDFilterToolbarProps = Pick<
   | 'diveNumberInput'
   | 'ddLimitInput'
   | 'ddMinInput'
+  | 'headFirstOnly'
+  | 'hideImpossibleDives'
+  | 'advancedFiltersOpen'
   | 'columnVisibility'
   | 'columnsOpen'
   | 'setEventSingle'
@@ -20,6 +24,9 @@ type DDFilterToolbarProps = Pick<
   | 'setDiveNumberInput'
   | 'setDdLimitInput'
   | 'setDdMinInput'
+  | 'toggleHeadFirstOnly'
+  | 'toggleHideImpossibleDives'
+  | 'toggleAdvancedFilters'
   | 'resetFilters'
   | 'toggleColumn'
   | 'toggleColumnsOpen'
@@ -33,6 +40,9 @@ const DDFilterToolbar: React.FC<DDFilterToolbarProps> = ({
   diveNumberInput,
   ddLimitInput,
   ddMinInput,
+  headFirstOnly,
+  hideImpossibleDives,
+  advancedFiltersOpen,
   columnVisibility,
   columnsOpen,
   setEventSingle,
@@ -41,6 +51,9 @@ const DDFilterToolbar: React.FC<DDFilterToolbarProps> = ({
   setDiveNumberInput,
   setDdLimitInput,
   setDdMinInput,
+  toggleHeadFirstOnly,
+  toggleHideImpossibleDives,
+  toggleAdvancedFilters,
   resetFilters,
   toggleColumn,
   toggleColumnsOpen,
@@ -58,12 +71,20 @@ const DDFilterToolbar: React.FC<DDFilterToolbarProps> = ({
       diveNumberInput={diveNumberInput}
       ddLimitInput={ddLimitInput}
       ddMinInput={ddMinInput}
-      columnVisibility={columnVisibility}
-      columnsOpen={columnsOpen}
+      headFirstOnly={headFirstOnly}
+      hideImpossibleDives={hideImpossibleDives}
+      advancedFiltersOpen={advancedFiltersOpen}
       toggleGroup={toggleGroup}
       setDiveNumberInput={setDiveNumberInput}
       setDdLimitInput={setDdLimitInput}
       setDdMinInput={setDdMinInput}
+      toggleHeadFirstOnly={toggleHeadFirstOnly}
+      toggleHideImpossibleDives={toggleHideImpossibleDives}
+      toggleAdvancedFilters={toggleAdvancedFilters}
+    />
+    <DDFilterActions
+      columnVisibility={columnVisibility}
+      columnsOpen={columnsOpen}
       resetFilters={resetFilters}
       toggleColumn={toggleColumn}
       toggleColumnsOpen={toggleColumnsOpen}

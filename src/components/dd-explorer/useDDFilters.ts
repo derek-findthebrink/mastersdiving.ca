@@ -14,6 +14,9 @@ export function useDDFilters() {
   const [ddLimitInput, setDdLimitInput] = React.useState('');
   const [ddMin, setDdMin] = React.useState<number | null>(null);
   const [ddMinInput, setDdMinInput] = React.useState('');
+  const [headFirstOnly, setHeadFirstOnly] = React.useState(false);
+  const [hideImpossibleDives, setHideImpossibleDives] = React.useState(false);
+  const [advancedFiltersOpen, setAdvancedFiltersOpen] = React.useState(false);
   const [columnVisibility, setColumnVisibility] = React.useState<Record<string, boolean>>(
     () => {
       const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
@@ -31,6 +34,14 @@ export function useDDFilters() {
       if (boards.length > 0 && !boards.includes(n.Board)) return false;
       if (!groups.includes(n.Group)) return false;
       if (diveNumber != null && n['Dive Number'] !== diveNumber) return false;
+      if (headFirstOnly && n['Dive Number'] % 10 % 2 === 0) return false;
+      if (hideImpossibleDives) {
+        const hasValidDD = POSITIONS.some((pos) => {
+          const dd = parseDD(n[pos]);
+          return dd !== null;
+        });
+        if (!hasValidDD) return false;
+      }
       if (ddLimit != null) {
         const hasPositionUnderLimit = POSITIONS.some((pos) => {
           const dd = parseDD(n[pos]);
@@ -54,7 +65,7 @@ export function useDDFilters() {
       if (a.Group !== b.Group) return a.Group - b.Group;
       return a['Dive Number'] - b['Dive Number'];
     });
-  }, [events, boards, groups, diveNumber, ddLimit, ddMin]);
+  }, [events, boards, groups, diveNumber, ddLimit, ddMin, headFirstOnly, hideImpossibleDives]);
 
   const toggleEvent = React.useCallback((event: EventType) => {
     setEvents((prev) =>
@@ -126,6 +137,18 @@ export function useDDFilters() {
     setColumnsOpen(false);
   }, []);
 
+  const toggleAdvancedFilters = React.useCallback(() => {
+    setAdvancedFiltersOpen((o) => !o);
+  }, []);
+
+  const toggleHeadFirstOnly = React.useCallback(() => {
+    setHeadFirstOnly((prev) => !prev);
+  }, []);
+
+  const toggleHideImpossibleDives = React.useCallback(() => {
+    setHideImpossibleDives((prev) => !prev);
+  }, []);
+
   const resetFilters = React.useCallback(() => {
     setEvents([]);
     setBoards([]);
@@ -136,6 +159,8 @@ export function useDDFilters() {
     setDdLimitInput('');
     setDdMin(null);
     setDdMinInput('');
+    setHeadFirstOnly(false);
+    setHideImpossibleDives(false);
   }, []);
 
   // Auto-deselect boards that are not available for selected events
@@ -183,6 +208,9 @@ export function useDDFilters() {
     ddLimitInput,
     ddMin,
     ddMinInput,
+    headFirstOnly,
+    hideImpossibleDives,
+    advancedFiltersOpen,
     filteredNodes,
 
     // Column state
@@ -203,6 +231,9 @@ export function useDDFilters() {
     applyDdLimit,
     setDdMinInput,
     applyDdMin,
+    toggleHeadFirstOnly,
+    toggleHideImpossibleDives,
+    toggleAdvancedFilters,
     resetFilters,
 
     // Column actions
