@@ -46,8 +46,54 @@ export const DEFAULT_COLUMN_VISIBILITY: Record<string, boolean> = {
   D: true,
 };
 
-export const CUSTOM_THEME = {
+export const getCustomTheme = (isDarkMode: boolean) => ({
+  Table: `
+    --data-table-library_grid-template-columns: ${isDarkMode ? 'var(--data-table-library_grid-template-columns)' : 'var(--data-table-library_grid-template-columns)'};
+    background-color: ${isDarkMode ? 'rgb(30 41 59)' : 'white'};
+    color: ${isDarkMode ? 'rgb(226 232 240)' : 'rgb(15 23 42)'};
+  `,
+  Header: ``,
+  Body: ``,
+  BaseRow: `
+    background-color: ${isDarkMode ? 'rgb(30 41 59)' : 'white'};
+    color: ${isDarkMode ? 'rgb(226 232 240)' : 'rgb(15 23 42)'};
+  `,
+  HeaderRow: `
+    background-color: ${isDarkMode ? 'rgb(51 65 85)' : 'rgb(248 250 252)'};
+    color: ${isDarkMode ? 'rgb(203 213 225)' : 'rgb(71 85 105)'};
+  `,
+  Row: `
+    cursor: pointer;
+    background-color: ${isDarkMode ? 'rgb(30 41 59)' : 'white'};
+    color: ${isDarkMode ? 'rgb(226 232 240)' : 'rgb(15 23 42)'};
+
+    /* Base bold text styling for normal rows */
+    .font-bold {
+      color: ${isDarkMode ? 'rgb(255 255 255)' : 'rgb(0 0 0)'};
+    }
+
+    &:hover {
+      background-color: ${isDarkMode ? 'rgb(51 65 85)' : 'rgb(248 250 252)'};
+      color: ${isDarkMode ? 'rgb(241 245 249)' : 'rgb(15 23 42)'};
+      
+      .font-bold {
+        color: ${isDarkMode ? 'rgb(241 245 249)' : 'rgb(15 23 42)'};
+      }
+    }
+
+    &.row-select-selected, &.row-select-single-selected {
+      background-color: ${isDarkMode ? 'rgb(30 58 138)' : 'rgb(219 234 254)'};
+      color: ${isDarkMode ? 'rgb(191 219 254)' : 'rgb(30 64 175)'};
+      
+      /* Override all text colors in selected rows including bold text */
+      .font-bold {
+        color: ${isDarkMode ? 'rgb(191 219 254)' : 'rgb(30 64 175)'};
+      }
+    }
+  `,
   BaseCell: `
+    border-bottom: 1px solid ${isDarkMode ? 'rgb(51 65 85)' : 'rgb(226 232 240)'};
+    
     &:not(:last-of-type) {
       white-space: nowrap;
     }
@@ -56,20 +102,15 @@ export const CUSTOM_THEME = {
     }
   `,
   HeaderCell: `
+    border-bottom: 1px solid ${isDarkMode ? 'rgb(71 85 105)' : 'rgb(203 213 225)'};
+    
     &:nth-last-of-type(-n+4) {
       font-weight: normal;
       text-align: center;
     }
   `,
-  Row: `
-    cursor: pointer;
-
-    &.row-select-selected, &.row-select-single-selected {
-      background-color: rgb(219 234 254);
-      color: rgb(30 64 175);
-    }
-  `,
-};
+  Cell: ``,
+});
 
 export const VIRTUALIZED_OPTIONS = {
   rowHeight: (_item: DiveNode, _index: number) => 33,

@@ -8,7 +8,7 @@ import { SelectClickTypes, SelectTypes } from '@table-library/react-table-librar
 import type { Layout } from '@table-library/react-table-library/types/layout';
 
 import type { DiveNode, Position } from './types';
-import { COLUMN_WIDTHS, CUSTOM_THEME, VIRTUALIZED_OPTIONS, MOBILE_COLUMN_LABELS } from './constants';
+import { COLUMN_WIDTHS, getCustomTheme, VIRTUALIZED_OPTIONS, MOBILE_COLUMN_LABELS } from './constants';
 import { parseDD, formatEvent } from './utils';
 import { useDDFilters } from './useDDFilters';
 import DDFilterToolbar from './DDFilterToolbar';
@@ -22,6 +22,7 @@ const DDTable = () => {
 
   // Track if we're on mobile (375px or less)
   const [isMobile, setIsMobile] = React.useState(false);
+  const [isDarkMode, setIsDarkMode] = React.useState(false);
 
   React.useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 375px)');
@@ -38,6 +39,25 @@ const DDTable = () => {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
+  React.useEffect(() => {
+    // Check if dark mode is active (class-based dark mode)
+    const checkDarkMode = () => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'));
+    };
+
+    // Set initial value
+    checkDarkMode();
+
+    // Watch for changes to the dark class on the html element
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   // Helper function to get the appropriate label based on screen size
   const getColumnLabel = React.useCallback((label: string): string => {
     if (isMobile && label in MOBILE_COLUMN_LABELS) {
@@ -46,7 +66,9 @@ const DDTable = () => {
     return label;
   }, [isMobile]);
 
-  const theme = useTheme([getTheme(), CUSTOM_THEME]);
+  // Generate custom theme based on dark mode state
+  const customTheme = React.useMemo(() => getCustomTheme(isDarkMode), [isDarkMode]);
+  const theme = useTheme([getTheme(), customTheme]);
 
   const data = React.useMemo(() => ({ nodes: filteredNodes }), [filteredNodes]);
 
@@ -64,13 +86,13 @@ const DDTable = () => {
       const numeric = parseDD(val);
 
       if (val === '-' || val === 'x') {
-        classes.push('text-gray-400');
+        classes.push('text-gray-400', 'dark:text-gray-500');
       } else if (ddLimit != null && numeric !== null && numeric > ddLimit) {
-        classes.push('text-gray-400');
+        classes.push('text-gray-400', 'dark:text-gray-500');
       } else if (ddMin != null && numeric !== null && numeric < ddMin) {
-        classes.push('text-gray-400');
+        classes.push('text-gray-400', 'dark:text-gray-500');
       } else {
-        classes.push('font-bold', 'text-black');
+        classes.push('font-bold');
       }
 
       return <span className={classes.join(' ')} style={{ width: '2em' }}>{val}</span>;
