@@ -9,7 +9,7 @@ import type { Layout } from '@table-library/react-table-library/types/layout';
 
 import type { DiveNode, Position } from './types';
 import { COLUMN_WIDTHS, getCustomTheme, VIRTUALIZED_OPTIONS, MOBILE_COLUMN_LABELS } from './constants';
-import { parseDD, formatEvent } from './utils';
+import { formatEvent } from './utils';
 import { useDDFilters } from './useDDFilters';
 import DDFilterToolbar from './DDFilterToolbar';
 
@@ -81,21 +81,22 @@ const DDTable = () => {
 
   const makeDDRenderer = React.useCallback(
     (position: Position) => (item: DiveNode) => {
-      const classes = ['text-center'];
-      const val = item[position].toString();
-      const numeric = parseDD(val);
-
+      const val = item[position];
+      const numeric = item[`${position}DD` as keyof DiveNode] as number | null;
+      
+      let className = 'text-center';
+      
       if (val === '-' || val === 'x') {
-        classes.push('text-gray-400', 'dark:text-gray-500');
+        className += ' text-gray-400 dark:text-gray-500';
       } else if (ddLimit != null && numeric !== null && numeric > ddLimit) {
-        classes.push('text-gray-400', 'dark:text-gray-500');
+        className += ' text-gray-400 dark:text-gray-500';
       } else if (ddMin != null && numeric !== null && numeric < ddMin) {
-        classes.push('text-gray-400', 'dark:text-gray-500');
+        className += ' text-gray-400 dark:text-gray-500';
       } else {
-        classes.push('font-bold');
+        className += ' font-bold';
       }
-
-      return <span className={classes.join(' ')} style={{ width: '2em' }}>{val}</span>;
+      
+      return <span className={className} style={{ width: '2em' }}>{val}</span>;
     },
     [ddLimit, ddMin]
   );
@@ -103,15 +104,15 @@ const DDTable = () => {
   const columns = React.useMemo<ExtendedColumn[]>(() => {
     // Define columns with their original label names for lookups
     const columnDefs: Array<{ originalLabel: string; renderCell: (item: DiveNode) => React.ReactNode; resize: boolean }> = [
-      { originalLabel: 'Event', renderCell: (item) => formatEvent(item.Event), resize: true },
-      { originalLabel: 'Board', renderCell: (item) => item['Board'], resize: true },
-      { originalLabel: 'Group', renderCell: (item) => item['Group'], resize: true },
-      { originalLabel: 'Dive Number', renderCell: (item) => item['Dive Number'], resize: true },
-      { originalLabel: 'Dive Description', renderCell: (item) => item['Dive Description'], resize: true },
-      { originalLabel: 'A', renderCell: makeDDRenderer('A'), resize: true },
-      { originalLabel: 'B', renderCell: makeDDRenderer('B'), resize: true },
-      { originalLabel: 'C', renderCell: makeDDRenderer('C'), resize: true },
-      { originalLabel: 'D', renderCell: makeDDRenderer('D'), resize: true },
+      { originalLabel: 'event', renderCell: (item) => formatEvent(item.event), resize: true },
+      { originalLabel: 'board', renderCell: (item) => item.board, resize: true },
+      { originalLabel: 'group', renderCell: (item) => item.group, resize: true },
+      { originalLabel: 'diveNumber', renderCell: (item) => item.diveNumber, resize: true },
+      { originalLabel: 'diveDescription', renderCell: (item) => item.diveDescription, resize: true },
+      { originalLabel: 'a', renderCell: makeDDRenderer('a'), resize: true },
+      { originalLabel: 'b', renderCell: makeDDRenderer('b'), resize: true },
+      { originalLabel: 'c', renderCell: makeDDRenderer('c'), resize: true },
+      { originalLabel: 'd', renderCell: makeDDRenderer('d'), resize: true },
     ];
     
     return columnDefs.map((col) => ({

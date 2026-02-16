@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 import type { EventType, Board } from './types';
-import { ALL_EVENTS, ALL_GROUPS, BOARD_ORDER, POSITIONS, DEFAULT_COLUMN_VISIBILITY, getAvailableBoards } from './constants';
-import { parseDD, nodes } from './utils';
+import { ALL_EVENTS, ALL_GROUPS, DEFAULT_COLUMN_VISIBILITY, getAvailableBoards } from './constants';
+import { nodes } from './utils';
 
 export function useDDFilters() {
   const [events, setEvents] = React.useState<EventType[]>(() => []);
@@ -22,7 +22,7 @@ export function useDDFilters() {
       const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
       return {
         ...DEFAULT_COLUMN_VISIBILITY,
-        'Dive Description': isMobile ? false : DEFAULT_COLUMN_VISIBILITY['Dive Description'],
+        'diveDescription': isMobile ? false : DEFAULT_COLUMN_VISIBILITY['diveDescription'],
       };
     }
   );
@@ -30,41 +30,57 @@ export function useDDFilters() {
 
   const filteredNodes = React.useMemo(() => {
     const filtered = nodes.filter((n) => {
-      if (events.length > 0 && !events.includes(n.Event)) return false;
-      if (boards.length > 0 && !boards.includes(n.Board)) return false;
-      if (!groups.includes(n.Group)) return false;
-      if (diveNumber != null && n['Dive Number'] !== diveNumber) return false;
-      if (headFirstOnly && n['Dive Number'] % 10 % 2 === 0) return false;
-      if (hideImpossibleDives) {
-        const hasValidDD = POSITIONS.some((pos) => {
-          const dd = parseDD(n[pos]);
-          return dd !== null;
-        });
-        if (!hasValidDD) return false;
-      }
+      // Event filter
+      if (events.length > 0 && !events.includes(n.event)) return false;
+      
+      // Board filter
+      if (boards.length > 0 && !boards.includes(n.board)) return false;
+      
+      // Group filter
+      if (!groups.includes(n.group)) return false;
+      
+      // Dive number filter
+      if (diveNumber != null && n.diveNumber !== diveNumber) return false;
+      
+      // Head first filter - use pre-computed flag
+      if (headFirstOnly && !n.isHeadFirst) return false;
+      
+      // Hide impossible dives - use pre-computed flag
+      if (hideImpossibleDives && !n.hasValidDD) return false;
+      
+      // DD limit filter - use pre-computed values
       if (ddLimit != null) {
-        const hasPositionUnderLimit = POSITIONS.some((pos) => {
-          const dd = parseDD(n[pos]);
-          return dd !== null && dd <= ddLimit;
-        });
+        const hasPositionUnderLimit = 
+          (n.aDD !== null && n.aDD <= ddLimit) ||
+          (n.bDD !== null && n.bDD <= ddLimit) ||
+          (n.cDD !== null && n.cDD <= ddLimit) ||
+          (n.dDD !== null && n.dDD <= ddLimit);
         if (!hasPositionUnderLimit) return false;
       }
+      
+      // DD min filter - use pre-computed values
       if (ddMin != null) {
-        const hasPositionOverMin = POSITIONS.some((pos) => {
-          const dd = parseDD(n[pos]);
-          return dd !== null && dd >= ddMin;
-        });
+        const hasPositionOverMin = 
+          (n.aDD !== null && n.aDD >= ddMin) ||
+          (n.bDD !== null && n.bDD >= ddMin) ||
+          (n.cDD !== null && n.cDD >= ddMin) ||
+          (n.dDD !== null && n.dDD >= ddMin);
         if (!hasPositionOverMin) return false;
       }
+      
       return true;
     });
-    return [...filtered].sort((a, b) => {
-      const boardA = BOARD_ORDER.indexOf(a.Board);
-      const boardB = BOARD_ORDER.indexOf(b.Board);
-      if (boardA !== boardB) return boardA - boardB;
-      if (a.Group !== b.Group) return a.Group - b.Group;
-      return a['Dive Number'] - b['Dive Number'];
+    
+    // Optimized sort - use pre-computed boardOrderIndex, remove array spread
+    filtered.sort((a, b) => {
+      if (a.boardOrderIndex !== b.boardOrderIndex) {
+        return a.boardOrderIndex - b.boardOrderIndex;
+      }
+      if (a.group !== b.group) return a.group - b.group;
+      return a.diveNumber - b.diveNumber;
     });
+    
+    return filtered;
   }, [events, boards, groups, diveNumber, ddLimit, ddMin, headFirstOnly, hideImpossibleDives]);
 
   const toggleEvent = React.useCallback((event: EventType) => {
