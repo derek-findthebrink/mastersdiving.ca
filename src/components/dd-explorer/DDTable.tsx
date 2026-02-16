@@ -8,14 +8,43 @@ import { SelectClickTypes, SelectTypes } from '@table-library/react-table-librar
 import type { Layout } from '@table-library/react-table-library/types/layout';
 
 import type { DiveNode, Position } from './types';
-import { COLUMN_WIDTHS, CUSTOM_THEME, VIRTUALIZED_OPTIONS } from './constants';
+import { COLUMN_WIDTHS, CUSTOM_THEME, VIRTUALIZED_OPTIONS, MOBILE_COLUMN_LABELS } from './constants';
 import { parseDD, formatEvent } from './utils';
 import { useDDFilters } from './useDDFilters';
 import DDFilterToolbar from './DDFilterToolbar';
 
+// Extended column type that includes originalLabel for lookups
+type ExtendedColumn = Column<DiveNode> & { originalLabel?: string };
+
 const DDTable = () => {
   const filters = useDDFilters();
   const { filteredNodes, ddLimit, ddMin, columnVisibility } = filters;
+
+  // Track if we're on mobile (375px or less)
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 375px)');
+    
+    const handleChange = (e: MediaQueryListEvent | MediaQueryList) => {
+      setIsMobile(e.matches);
+    };
+
+    // Set initial value
+    handleChange(mediaQuery);
+
+    // Listen for changes
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  // Helper function to get the appropriate label based on screen size
+  const getColumnLabel = React.useCallback((label: string): string => {
+    if (isMobile && label in MOBILE_COLUMN_LABELS) {
+      return MOBILE_COLUMN_LABELS[label] ?? label;
+    }
+    return label;
+  }, [isMobile]);
 
   const theme = useTheme([getTheme(), CUSTOM_THEME]);
 
@@ -49,25 +78,33 @@ const DDTable = () => {
     [ddLimit, ddMin]
   );
 
-  const columns = React.useMemo<Column<DiveNode>[]>(() => {
-    const defs: Omit<Column<DiveNode>, 'hide'>[] = [
-      { label: 'Event', renderCell: (item) => formatEvent(item.Event), resize: true },
-      { label: 'Board', renderCell: (item) => item['Board'], resize: true },
-      { label: 'Group', renderCell: (item) => item['Group'], resize: true },
-      { label: 'Dive Number', renderCell: (item) => item['Dive Number'], resize: true },
-      { label: 'Dive Description', renderCell: (item) => item['Dive Description'], resize: true },
-      { label: 'A', renderCell: makeDDRenderer('A'), resize: true },
-      { label: 'B', renderCell: makeDDRenderer('B'), resize: true },
-      { label: 'C', renderCell: makeDDRenderer('C'), resize: true },
-      { label: 'D', renderCell: makeDDRenderer('D'), resize: true },
+  const columns = React.useMemo<ExtendedColumn[]>(() => {
+    // Define columns with their original label names for lookups
+    const columnDefs: Array<{ originalLabel: string; renderCell: (item: DiveNode) => React.ReactNode; resize: boolean }> = [
+      { originalLabel: 'Event', renderCell: (item) => formatEvent(item.Event), resize: true },
+      { originalLabel: 'Board', renderCell: (item) => item['Board'], resize: true },
+      { originalLabel: 'Group', renderCell: (item) => item['Group'], resize: true },
+      { originalLabel: 'Dive Number', renderCell: (item) => item['Dive Number'], resize: true },
+      { originalLabel: 'Dive Description', renderCell: (item) => item['Dive Description'], resize: true },
+      { originalLabel: 'A', renderCell: makeDDRenderer('A'), resize: true },
+      { originalLabel: 'B', renderCell: makeDDRenderer('B'), resize: true },
+      { originalLabel: 'C', renderCell: makeDDRenderer('C'), resize: true },
+      { originalLabel: 'D', renderCell: makeDDRenderer('D'), resize: true },
     ];
-    return defs.map((col) => ({ ...col, hide: !columnVisibility[col.label] }));
-  }, [columnVisibility, makeDDRenderer]);
+    
+    return columnDefs.map((col) => ({
+      label: getColumnLabel(col.originalLabel),
+      originalLabel: col.originalLabel, // Store for lookups
+      renderCell: col.renderCell,
+      resize: col.resize,
+      hide: !columnVisibility[col.originalLabel],
+    }));
+  }, [columnVisibility, makeDDRenderer, getColumnLabel]);
 
   const resizedLayout = React.useMemo(() => {
     return columns
       .filter((col) => !col.hide)
-      .map((col) => COLUMN_WIDTHS[col.label] || 'minmax(0px, 1fr)')
+      .map((col) => COLUMN_WIDTHS[col.originalLabel || col.label] || 'minmax(0px, 1fr)')
       .join(' ');
   }, [columns]);
 

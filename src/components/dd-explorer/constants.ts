@@ -18,11 +18,20 @@ export const COLUMN_LABELS = [
   'Event', 'Board', 'Group', 'Dive Number', 'Dive Description', 'A', 'B', 'C', 'D',
 ] as const;
 
+// Mobile labels for columns (shown at 375px width or less)
+// Set to null to keep the default label on mobile
+export const MOBILE_COLUMN_LABELS: Partial<Record<string, string | null>> = {
+  'Board': 'B',
+  'Dive Number': '#',
+};
+
+const DEFAULT_COLUMN_WIDTH = '3.5em';
+
 export const COLUMN_WIDTHS: Record<string, string> = {
-  A: '4em',
-  B: '4em',
-  C: '4em',
-  D: '4em',
+  A: DEFAULT_COLUMN_WIDTH,
+  B: DEFAULT_COLUMN_WIDTH,
+  C: DEFAULT_COLUMN_WIDTH,
+  D: DEFAULT_COLUMN_WIDTH,
 };
 
 export const DEFAULT_COLUMN_VISIBILITY: Record<string, boolean> = {
