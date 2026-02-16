@@ -9,7 +9,7 @@ import type { Layout } from '@table-library/react-table-library/types/layout';
 
 import type { DiveNode, Position } from './types';
 import { COLUMN_WIDTHS, getCustomTheme, VIRTUALIZED_OPTIONS, MOBILE_COLUMN_LABELS } from './constants';
-import { formatEvent } from './utils';
+import { formatEvent, formatColumnLabel } from './utils';
 import { useDDFilters } from './useDDFilters';
 import DDFilterToolbar from './DDFilterToolbar';
 
@@ -61,9 +61,9 @@ const DDTable = () => {
   // Helper function to get the appropriate label based on screen size
   const getColumnLabel = React.useCallback((label: string): string => {
     if (isMobile && label in MOBILE_COLUMN_LABELS) {
-      return MOBILE_COLUMN_LABELS[label] ?? label;
+      return MOBILE_COLUMN_LABELS[label] ?? formatColumnLabel(label);
     }
-    return label;
+    return formatColumnLabel(label);
   }, [isMobile]);
 
   // Generate custom theme based on dark mode state
