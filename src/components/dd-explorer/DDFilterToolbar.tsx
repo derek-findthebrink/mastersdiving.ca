@@ -15,6 +15,7 @@ type DDFilterToolbarProps = Pick<
   | 'ddMinInput'
   | 'headFirstOnly'
   | 'hideImpossibleDives'
+  | 'ignoreADives'
   | 'advancedFiltersOpen'
   | 'columnVisibility'
   | 'columnsOpen'
@@ -26,6 +27,7 @@ type DDFilterToolbarProps = Pick<
   | 'setDdMinInput'
   | 'toggleHeadFirstOnly'
   | 'toggleHideImpossibleDives'
+  | 'toggleIgnoreADives'
   | 'toggleAdvancedFilters'
   | 'resetFilters'
   | 'toggleColumn'
@@ -42,6 +44,7 @@ const DDFilterToolbar: React.FC<DDFilterToolbarProps> = ({
   ddMinInput,
   headFirstOnly,
   hideImpossibleDives,
+  ignoreADives,
   advancedFiltersOpen,
   columnVisibility,
   columnsOpen,
@@ -53,6 +56,7 @@ const DDFilterToolbar: React.FC<DDFilterToolbarProps> = ({
   setDdMinInput,
   toggleHeadFirstOnly,
   toggleHideImpossibleDives,
+  toggleIgnoreADives,
   toggleAdvancedFilters,
   resetFilters,
   toggleColumn,
@@ -68,6 +72,7 @@ const DDFilterToolbar: React.FC<DDFilterToolbarProps> = ({
       ddMinInput={ddMinInput}
       headFirstOnly={headFirstOnly}
       hideImpossibleDives={hideImpossibleDives}
+      ignoreADives={ignoreADives}
       advancedFiltersOpen={advancedFiltersOpen}
       toggleGroup={toggleGroup}
       setDiveNumberInput={setDiveNumberInput}
@@ -75,6 +80,7 @@ const DDFilterToolbar: React.FC<DDFilterToolbarProps> = ({
       setDdMinInput={setDdMinInput}
       toggleHeadFirstOnly={toggleHeadFirstOnly}
       toggleHideImpossibleDives={toggleHideImpossibleDives}
+      toggleIgnoreADives={toggleIgnoreADives}
       toggleAdvancedFilters={toggleAdvancedFilters}
     />
     <DDFilterActions

@@ -18,7 +18,7 @@ type ExtendedColumn = Column<DiveNode> & { originalLabel?: string };
 
 const DDTable = () => {
   const filters = useDDFilters();
-  const { filteredNodes, ddLimit, ddMin, columnVisibility } = filters;
+  const { filteredNodes, ddLimit, ddMin, ignoreADives, columnVisibility } = filters;
 
   // Track if we're on mobile (375px or less)
   const [isMobile, setIsMobile] = React.useState(false);
@@ -93,7 +93,10 @@ const DDTable = () => {
 
       let className = 'text-center';
 
-      if (val === '-' || val === 'x') {
+      // Grey out A dives when ignoreADives is active
+      if (position === 'a' && ignoreADives) {
+        className += ' text-gray-400 dark:text-gray-500';
+      } else if (val === '-' || val === 'x') {
         className += ' text-gray-400 dark:text-gray-500';
       } else if (ddLimit != null && numeric !== null && numeric > ddLimit) {
         className += ' text-gray-400 dark:text-gray-500';
@@ -109,7 +112,7 @@ const DDTable = () => {
         </span>
       );
     },
-    [ddLimit, ddMin]
+    [ddLimit, ddMin, ignoreADives]
   );
 
   const columns = React.useMemo<ExtendedColumn[]>(() => {

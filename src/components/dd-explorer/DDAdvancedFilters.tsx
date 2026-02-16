@@ -11,6 +11,7 @@ type DDAdvancedFiltersProps = Pick<
   | 'ddMinInput'
   | 'headFirstOnly'
   | 'hideImpossibleDives'
+  | 'ignoreADives'
   | 'advancedFiltersOpen'
   | 'toggleGroup'
   | 'setDiveNumberInput'
@@ -18,6 +19,7 @@ type DDAdvancedFiltersProps = Pick<
   | 'setDdMinInput'
   | 'toggleHeadFirstOnly'
   | 'toggleHideImpossibleDives'
+  | 'toggleIgnoreADives'
   | 'toggleAdvancedFilters'
 >;
 
@@ -36,6 +38,7 @@ const DDAdvancedFilters: React.FC<DDAdvancedFiltersProps> = ({
   ddMinInput,
   headFirstOnly,
   hideImpossibleDives,
+  ignoreADives,
   advancedFiltersOpen,
   toggleGroup,
   setDiveNumberInput,
@@ -43,6 +46,7 @@ const DDAdvancedFilters: React.FC<DDAdvancedFiltersProps> = ({
   setDdMinInput,
   toggleHeadFirstOnly,
   toggleHideImpossibleDives,
+  toggleIgnoreADives,
   toggleAdvancedFilters,
 }) => (
   <div
@@ -106,6 +110,18 @@ const DDAdvancedFilters: React.FC<DDAdvancedFiltersProps> = ({
             aria-pressed={hideImpossibleDives}
           >
             Hide Impossible Dives
+          </button>
+        </fieldset>
+
+        <fieldset className="flex flex-wrap items-center gap-2 border-0 p-0">
+          <legend className="sr-only">Ignore A dives</legend>
+          <button
+            type="button"
+            onClick={toggleIgnoreADives}
+            className={`${BUTTON_BASE_CLASS} ${ignoreADives ? BUTTON_ACTIVE_CLASS : BUTTON_INACTIVE_CLASS}`}
+            aria-pressed={ignoreADives}
+          >
+            Ignore A Dives
           </button>
         </fieldset>
 

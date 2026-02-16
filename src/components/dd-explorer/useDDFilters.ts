@@ -16,6 +16,7 @@ export function useDDFilters() {
   const [ddMinInput, setDdMinInput] = React.useState('');
   const [headFirstOnly, setHeadFirstOnly] = React.useState(false);
   const [hideImpossibleDives, setHideImpossibleDives] = React.useState(false);
+  const [ignoreADives, setIgnoreADives] = React.useState(false);
   const [advancedFiltersOpen, setAdvancedFiltersOpen] = React.useState(false);
   const [columnVisibility, setColumnVisibility] = React.useState<Record<string, boolean>>(() => {
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
@@ -49,7 +50,7 @@ export function useDDFilters() {
       // DD limit filter - use pre-computed values
       if (ddLimit != null) {
         const hasPositionUnderLimit =
-          (n.aDD !== null && n.aDD <= ddLimit) ||
+          (!ignoreADives && n.aDD !== null && n.aDD <= ddLimit) ||
           (n.bDD !== null && n.bDD <= ddLimit) ||
           (n.cDD !== null && n.cDD <= ddLimit) ||
           (n.dDD !== null && n.dDD <= ddLimit);
@@ -59,7 +60,7 @@ export function useDDFilters() {
       // DD min filter - use pre-computed values
       if (ddMin != null) {
         const hasPositionOverMin =
-          (n.aDD !== null && n.aDD >= ddMin) ||
+          (!ignoreADives && n.aDD !== null && n.aDD >= ddMin) ||
           (n.bDD !== null && n.bDD >= ddMin) ||
           (n.cDD !== null && n.cDD >= ddMin) ||
           (n.dDD !== null && n.dDD >= ddMin);
@@ -79,7 +80,7 @@ export function useDDFilters() {
     });
 
     return filtered;
-  }, [events, boards, groups, diveNumber, ddLimit, ddMin, headFirstOnly, hideImpossibleDives]);
+  }, [events, boards, groups, diveNumber, ddLimit, ddMin, headFirstOnly, hideImpossibleDives, ignoreADives]);
 
   const toggleEvent = React.useCallback((event: EventType) => {
     setEvents((prev) => (prev.includes(event) ? prev.filter((e) => e !== event) : [...prev, event]));
@@ -162,6 +163,10 @@ export function useDDFilters() {
     setHideImpossibleDives((prev) => !prev);
   }, []);
 
+  const toggleIgnoreADives = React.useCallback(() => {
+    setIgnoreADives((prev) => !prev);
+  }, []);
+
   const resetFilters = React.useCallback(() => {
     setEvents([]);
     setBoards([]);
@@ -174,6 +179,7 @@ export function useDDFilters() {
     setDdMinInput('');
     setHeadFirstOnly(false);
     setHideImpossibleDives(false);
+    setIgnoreADives(false);
   }, []);
 
   // Auto-deselect boards that are not available for selected events
@@ -223,6 +229,7 @@ export function useDDFilters() {
     ddMinInput,
     headFirstOnly,
     hideImpossibleDives,
+    ignoreADives,
     advancedFiltersOpen,
     filteredNodes,
 
@@ -246,6 +253,7 @@ export function useDDFilters() {
     applyDdMin,
     toggleHeadFirstOnly,
     toggleHideImpossibleDives,
+    toggleIgnoreADives,
     toggleAdvancedFilters,
     resetFilters,
 
