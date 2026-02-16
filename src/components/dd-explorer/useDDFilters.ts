@@ -90,7 +90,15 @@ export function useDDFilters() {
   }, []);
 
   const toggleGroup = React.useCallback((group: number) => {
-    setGroups((prev) => (prev.includes(group) ? prev.filter((g) => g !== group) : [...prev, group]));
+    setGroups((prev) => {
+      // If clicking a group that's already selected and all groups are selected,
+      // deselect all other groups (keep only the clicked one)
+      if (prev.includes(group) && prev.length === ALL_GROUPS.length) {
+        return [group];
+      }
+      // Otherwise, toggle the group normally
+      return prev.includes(group) ? prev.filter((g) => g !== group) : [...prev, group];
+    });
   }, []);
 
   const setEventAll = React.useCallback(() => {
