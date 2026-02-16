@@ -26,7 +26,7 @@ const DDTable = () => {
 
   React.useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 375px)');
-    
+
     const handleChange = (e: MediaQueryListEvent | MediaQueryList) => {
       setIsMobile(e.matches);
     };
@@ -59,12 +59,15 @@ const DDTable = () => {
   }, []);
 
   // Helper function to get the appropriate label based on screen size
-  const getColumnLabel = React.useCallback((label: string): string => {
-    if (isMobile && label in MOBILE_COLUMN_LABELS) {
-      return MOBILE_COLUMN_LABELS[label] ?? formatColumnLabel(label);
-    }
-    return formatColumnLabel(label);
-  }, [isMobile]);
+  const getColumnLabel = React.useCallback(
+    (label: string): string => {
+      if (isMobile && label in MOBILE_COLUMN_LABELS) {
+        return MOBILE_COLUMN_LABELS[label] ?? formatColumnLabel(label);
+      }
+      return formatColumnLabel(label);
+    },
+    [isMobile]
+  );
 
   // Generate custom theme based on dark mode state
   const customTheme = React.useMemo(() => getCustomTheme(isDarkMode), [isDarkMode]);
@@ -72,20 +75,24 @@ const DDTable = () => {
 
   const data = React.useMemo(() => ({ nodes: filteredNodes }), [filteredNodes]);
 
-  const select = useRowSelect(data, {
-    state: { id: null },
-  }, {
-    clickType: SelectClickTypes.RowClick,
-    rowSelect: SelectTypes.SingleSelect,
-  });
+  const select = useRowSelect(
+    data,
+    {
+      state: { id: null },
+    },
+    {
+      clickType: SelectClickTypes.RowClick,
+      rowSelect: SelectTypes.SingleSelect,
+    }
+  );
 
   const makeDDRenderer = React.useCallback(
     (position: Position) => (item: DiveNode) => {
       const val = item[position];
       const numeric = item[`${position}DD` as keyof DiveNode] as number | null;
-      
+
       let className = 'text-center';
-      
+
       if (val === '-' || val === 'x') {
         className += ' text-gray-400 dark:text-gray-500';
       } else if (ddLimit != null && numeric !== null && numeric > ddLimit) {
@@ -95,15 +102,23 @@ const DDTable = () => {
       } else {
         className += ' font-bold';
       }
-      
-      return <span className={className} style={{ width: '2em' }}>{val}</span>;
+
+      return (
+        <span className={className} style={{ width: '2em' }}>
+          {val}
+        </span>
+      );
     },
     [ddLimit, ddMin]
   );
 
   const columns = React.useMemo<ExtendedColumn[]>(() => {
     // Define columns with their original label names for lookups
-    const columnDefs: Array<{ originalLabel: string; renderCell: (item: DiveNode) => React.ReactNode; resize: boolean }> = [
+    const columnDefs: Array<{
+      originalLabel: string;
+      renderCell: (item: DiveNode) => React.ReactNode;
+      resize: boolean;
+    }> = [
       { originalLabel: 'event', renderCell: (item) => formatEvent(item.event), resize: true },
       { originalLabel: 'board', renderCell: (item) => item.board, resize: true },
       { originalLabel: 'group', renderCell: (item) => item.group, resize: true },
@@ -114,7 +129,7 @@ const DDTable = () => {
       { originalLabel: 'c', renderCell: makeDDRenderer('c'), resize: true },
       { originalLabel: 'd', renderCell: makeDDRenderer('d'), resize: true },
     ];
-    
+
     return columnDefs.map((col) => ({
       label: getColumnLabel(col.originalLabel),
       originalLabel: col.originalLabel, // Store for lookups
@@ -132,7 +147,10 @@ const DDTable = () => {
   }, [columns]);
 
   const tableKey = React.useMemo(() => {
-    return columns.filter((col) => !col.hide).map((col) => col.label).join(',');
+    return columns
+      .filter((col) => !col.hide)
+      .map((col) => col.label)
+      .join(',');
   }, [columns]);
 
   const layout: Layout = {

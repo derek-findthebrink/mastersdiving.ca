@@ -17,60 +17,58 @@ export function useDDFilters() {
   const [headFirstOnly, setHeadFirstOnly] = React.useState(false);
   const [hideImpossibleDives, setHideImpossibleDives] = React.useState(false);
   const [advancedFiltersOpen, setAdvancedFiltersOpen] = React.useState(false);
-  const [columnVisibility, setColumnVisibility] = React.useState<Record<string, boolean>>(
-    () => {
-      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-      return {
-        ...DEFAULT_COLUMN_VISIBILITY,
-        'diveDescription': isMobile ? false : DEFAULT_COLUMN_VISIBILITY['diveDescription'],
-      };
-    }
-  );
+  const [columnVisibility, setColumnVisibility] = React.useState<Record<string, boolean>>(() => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    return {
+      ...DEFAULT_COLUMN_VISIBILITY,
+      diveDescription: isMobile ? false : DEFAULT_COLUMN_VISIBILITY['diveDescription'],
+    };
+  });
   const [columnsOpen, setColumnsOpen] = React.useState(false);
 
   const filteredNodes = React.useMemo(() => {
     const filtered = nodes.filter((n) => {
       // Event filter
       if (events.length > 0 && !events.includes(n.event)) return false;
-      
+
       // Board filter
       if (boards.length > 0 && !boards.includes(n.board)) return false;
-      
+
       // Group filter
       if (!groups.includes(n.group)) return false;
-      
+
       // Dive number filter
       if (diveNumber != null && n.diveNumber !== diveNumber) return false;
-      
+
       // Head first filter - use pre-computed flag
       if (headFirstOnly && !n.isHeadFirst) return false;
-      
+
       // Hide impossible dives - use pre-computed flag
       if (hideImpossibleDives && !n.hasValidDD) return false;
-      
+
       // DD limit filter - use pre-computed values
       if (ddLimit != null) {
-        const hasPositionUnderLimit = 
+        const hasPositionUnderLimit =
           (n.aDD !== null && n.aDD <= ddLimit) ||
           (n.bDD !== null && n.bDD <= ddLimit) ||
           (n.cDD !== null && n.cDD <= ddLimit) ||
           (n.dDD !== null && n.dDD <= ddLimit);
         if (!hasPositionUnderLimit) return false;
       }
-      
+
       // DD min filter - use pre-computed values
       if (ddMin != null) {
-        const hasPositionOverMin = 
+        const hasPositionOverMin =
           (n.aDD !== null && n.aDD >= ddMin) ||
           (n.bDD !== null && n.bDD >= ddMin) ||
           (n.cDD !== null && n.cDD >= ddMin) ||
           (n.dDD !== null && n.dDD >= ddMin);
         if (!hasPositionOverMin) return false;
       }
-      
+
       return true;
     });
-    
+
     // Optimized sort - use pre-computed boardOrderIndex, remove array spread
     filtered.sort((a, b) => {
       if (a.boardOrderIndex !== b.boardOrderIndex) {
@@ -79,26 +77,20 @@ export function useDDFilters() {
       if (a.group !== b.group) return a.group - b.group;
       return a.diveNumber - b.diveNumber;
     });
-    
+
     return filtered;
   }, [events, boards, groups, diveNumber, ddLimit, ddMin, headFirstOnly, hideImpossibleDives]);
 
   const toggleEvent = React.useCallback((event: EventType) => {
-    setEvents((prev) =>
-      prev.includes(event) ? prev.filter((e) => e !== event) : [...prev, event]
-    );
+    setEvents((prev) => (prev.includes(event) ? prev.filter((e) => e !== event) : [...prev, event]));
   }, []);
 
   const toggleBoard = React.useCallback((board: string) => {
-    setBoards((prev) =>
-      prev.includes(board) ? prev.filter((b) => b !== board) : [...prev, board]
-    );
+    setBoards((prev) => (prev.includes(board) ? prev.filter((b) => b !== board) : [...prev, board]));
   }, []);
 
   const toggleGroup = React.useCallback((group: number) => {
-    setGroups((prev) =>
-      prev.includes(group) ? prev.filter((g) => g !== group) : [...prev, group]
-    );
+    setGroups((prev) => (prev.includes(group) ? prev.filter((g) => g !== group) : [...prev, group]));
   }, []);
 
   const setEventAll = React.useCallback(() => {
@@ -106,10 +98,11 @@ export function useDDFilters() {
   }, []);
 
   const setEventSingle = React.useCallback((event: EventType) => {
-    setEvents((prev) =>
-      prev.includes(event) && prev.length === 1
-        ? [] // If clicking the only selected event, deselect it
-        : [event] // Otherwise, exclusively select this event
+    setEvents(
+      (prev) =>
+        prev.includes(event) && prev.length === 1
+          ? [] // If clicking the only selected event, deselect it
+          : [event] // Otherwise, exclusively select this event
     );
   }, []);
 
@@ -119,11 +112,7 @@ export function useDDFilters() {
   }, [events]);
 
   const setBoardSingle = React.useCallback((board: string) => {
-    setBoards((prev) =>
-      prev.includes(board)
-        ? prev.filter((b) => b !== board)
-        : [...prev, board]
-    );
+    setBoards((prev) => (prev.includes(board) ? prev.filter((b) => b !== board) : [...prev, board]));
   }, []);
 
   const applyDiveNumber = React.useCallback(() => {

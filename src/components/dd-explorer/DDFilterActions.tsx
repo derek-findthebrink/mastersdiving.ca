@@ -5,12 +5,7 @@ import DDColumnPicker from './DDColumnPicker';
 
 type DDFilterActionsProps = Pick<
   DDFiltersReturn,
-  | 'columnVisibility'
-  | 'columnsOpen'
-  | 'resetFilters'
-  | 'toggleColumn'
-  | 'toggleColumnsOpen'
-  | 'closeColumns'
+  'columnVisibility' | 'columnsOpen' | 'resetFilters' | 'toggleColumn' | 'toggleColumnsOpen' | 'closeColumns'
 >;
 
 const DDFilterActions: React.FC<DDFilterActionsProps> = ({

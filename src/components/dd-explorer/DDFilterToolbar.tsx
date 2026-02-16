@@ -60,12 +60,7 @@ const DDFilterToolbar: React.FC<DDFilterToolbarProps> = ({
   closeColumns,
 }) => (
   <div className="flex flex-col gap-3">
-    <DDBasicFilters
-      events={events}
-      boards={boards}
-      setEventSingle={setEventSingle}
-      setBoardSingle={setBoardSingle}
-    />
+    <DDBasicFilters events={events} boards={boards} setEventSingle={setEventSingle} setBoardSingle={setBoardSingle} />
     <DDAdvancedFilters
       groups={groups}
       diveNumberInput={diveNumberInput}

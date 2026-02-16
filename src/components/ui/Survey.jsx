@@ -54,13 +54,13 @@ export default function Survey({ isEnabled = IS_ENABLED }) {
         console.log(surveyResponses);
         window.localStorage.setItem(SURVEY_KEY, surveyResponses);
         try {
-          const [response, data] = await api.surveyCompletions(surveyResponses);
+          const [response] = await api.surveyCompletions(surveyResponses);
           if (response.status === 200) {
             options.showDataSavingSuccess();
           } else {
             options.showDataSavingError('Looks like there was an error saving your data. Please try again later.');
           }
-        } catch (e) {
+        } catch {
           options.showSaveError('Looks like there was an error saving your data. Please try again later.');
         }
       });

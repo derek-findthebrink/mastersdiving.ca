@@ -16,23 +16,26 @@ export const formatEvent = (event: EventType): string => {
 export const formatColumnLabel = (label: string): string => {
   // Handle special cases
   const specialCases: Record<string, string> = {
-    'diveNumber': 'Dive Number',
-    'diveDescription': 'Dive Description',
-    'a': 'A',
-    'b': 'B',
-    'c': 'C',
-    'd': 'D',
+    diveNumber: 'Dive Number',
+    diveDescription: 'Dive Description',
+    a: 'A',
+    b: 'B',
+    c: 'C',
+    d: 'D',
   };
-  
+
   if (label in specialCases) {
     return specialCases[label];
   }
-  
+
   // Convert to title case (capitalize first letter)
   return label.charAt(0).toUpperCase() + label.slice(1);
 };
 
-export const nodes: DiveNode[] = DDData.data.map((item, index) => ({
-  id: index,
-  ...item,
-} as DiveNode));
+export const nodes: DiveNode[] = DDData.data.map(
+  (item, index) =>
+    ({
+      id: index,
+      ...item,
+    }) as DiveNode
+);

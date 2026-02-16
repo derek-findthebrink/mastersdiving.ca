@@ -21,8 +21,7 @@ type DDAdvancedFiltersProps = Pick<
   | 'toggleAdvancedFilters'
 >;
 
-const BUTTON_BASE_CLASS =
-  'rounded border px-2 py-1 text-sm transition-colors';
+const BUTTON_BASE_CLASS = 'rounded border px-2 py-1 text-sm transition-colors';
 
 const BUTTON_ACTIVE_CLASS =
   'border-blue-500 bg-blue-500 text-white hover:bg-blue-600 dark:border-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700';

@@ -14,15 +14,13 @@ export const getAvailableBoards = (events: EventType[]): Board[] => {
   return events[0] === 'Springboard' ? [...SPRINGBOARD_BOARDS] : [...PLATFORM_BOARDS];
 };
 
-export const COLUMN_LABELS = [
-  'event', 'board', 'group', 'diveNumber', 'diveDescription', 'a', 'b', 'c', 'd',
-] as const;
+export const COLUMN_LABELS = ['event', 'board', 'group', 'diveNumber', 'diveDescription', 'a', 'b', 'c', 'd'] as const;
 
 // Mobile labels for columns (shown at 375px width or less)
 // Set to null to keep the default label on mobile
 export const MOBILE_COLUMN_LABELS: Partial<Record<string, string | null>> = {
-  'board': 'B',
-  'diveNumber': '#',
+  board: 'B',
+  diveNumber: '#',
 };
 
 const DEFAULT_COLUMN_WIDTH = '3.5em';

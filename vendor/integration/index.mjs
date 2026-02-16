@@ -105,7 +105,7 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}) => {
               });
             }
           }
-        } catch (err) {
+        } catch {
           /* empty */
         }
       },
