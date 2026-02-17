@@ -31,7 +31,7 @@ const DDColumnPicker: React.FC<DDColumnPickerProps> = ({
       <>
         <div className="fixed inset-0 z-10" aria-hidden="true" onClick={onClose} />
         <div
-          className="absolute left-0 top-full z-20 mt-1 min-w-[10rem] rounded border border-slate-200 bg-white p-2 shadow-lg dark:border-slate-700 dark:bg-slate-800"
+          className="absolute left-0 top-full z-20 mt-1 min-w-40 rounded border border-slate-200 bg-white p-2 shadow-lg dark:border-slate-700 dark:bg-slate-800"
           role="menu"
         >
           {COLUMN_LABELS.map((label) => (
