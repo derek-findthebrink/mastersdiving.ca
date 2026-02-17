@@ -73,7 +73,7 @@ export const getCustomTheme = (isDarkMode: boolean) => ({
     &:hover {
       background-color: ${isDarkMode ? 'rgb(51 65 85)' : 'rgb(248 250 252)'};
       color: ${isDarkMode ? 'rgb(241 245 249)' : 'rgb(15 23 42)'};
-      
+
       .font-bold {
         color: ${isDarkMode ? 'rgb(241 245 249)' : 'rgb(15 23 42)'};
       }
@@ -82,7 +82,7 @@ export const getCustomTheme = (isDarkMode: boolean) => ({
     &.row-select-selected, &.row-select-single-selected {
       background-color: ${isDarkMode ? 'rgb(30 58 138)' : 'rgb(219 234 254)'};
       color: ${isDarkMode ? 'rgb(191 219 254)' : 'rgb(30 64 175)'};
-      
+
       /* Override all text colors in selected rows including bold text */
       .font-bold {
         color: ${isDarkMode ? 'rgb(191 219 254)' : 'rgb(30 64 175)'};
@@ -91,7 +91,7 @@ export const getCustomTheme = (isDarkMode: boolean) => ({
   `,
   BaseCell: `
     border-bottom: 1px solid ${isDarkMode ? 'rgb(51 65 85)' : 'rgb(226 232 240)'};
-    
+
     &:not(:last-of-type) {
       white-space: nowrap;
     }
@@ -101,7 +101,7 @@ export const getCustomTheme = (isDarkMode: boolean) => ({
   `,
   HeaderCell: `
     border-bottom: 1px solid ${isDarkMode ? 'rgb(71 85 105)' : 'rgb(203 213 225)'};
-    
+
     &:nth-last-of-type(-n+4) {
       font-weight: normal;
       text-align: center;
